@@ -1,10 +1,15 @@
 package com.example.vouviajarapirest.models;
 
 import java.time.OffsetDateTime;
+import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "USER", schema = "VOU_VIAJAR")
 public class User {
 
 	@Id
@@ -35,7 +40,7 @@ public class User {
 	@Column(name = "CREATED_ON")
 	private OffsetDateTime createdOn;
 	
-	@Column(name = "CREATED_ON")
+	@Column(name = "MODIFIED_ON")
 	private OffsetDateTime modifiedOn;
 
 	public Long getId() {
@@ -116,6 +121,27 @@ public class User {
 
 	public void setModifiedOn(OffsetDateTime modifiedOn) {
 		this.modifiedOn = modifiedOn;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(createdOn, dateJoined, email, id, isActive, isEnable, isStaff, modifiedOn, name, password);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(createdOn, other.createdOn) && Objects.equals(dateJoined, other.dateJoined)
+				&& Objects.equals(email, other.email) && Objects.equals(id, other.id) && isActive == other.isActive
+				&& isEnable == other.isEnable && isStaff == other.isStaff
+				&& Objects.equals(modifiedOn, other.modifiedOn) && Objects.equals(name, other.name)
+				&& Objects.equals(password, other.password);
 	}
 
 }
