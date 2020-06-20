@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CONTACT_TRAVEL_AGENCY", schema = "VOU_VIAJAR")
-public class ContactTravelAgency implements Serializable{
+public class TravelAgencyContact implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -107,7 +107,7 @@ public class ContactTravelAgency implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ContactTravelAgency other = (ContactTravelAgency) obj;
+		TravelAgencyContact other = (TravelAgencyContact) obj;
 		return Objects.equals(createdOn, other.createdOn) && Objects.equals(email, other.email)
 				&& Objects.equals(id, other.id) && isActive == other.isActive
 				&& Objects.equals(modifiedOn, other.modifiedOn) && Objects.equals(phone_numer, other.phone_numer)
