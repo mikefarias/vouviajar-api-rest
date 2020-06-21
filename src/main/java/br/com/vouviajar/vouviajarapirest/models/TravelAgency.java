@@ -16,8 +16,8 @@ public class TravelAgency implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "ID_USER")
-	private Long id;
+	@Column(name = "ID_TRAVEL_AGENCY")
+	private Long idTravelAgency;
 	
 	@Column(name = "CODE_CADASTUR")
 	private String codeCadastur;
@@ -34,12 +34,12 @@ public class TravelAgency implements Serializable{
 	@Column(name = "CREATED_ON")
 	private OffsetDateTime modifiedOn;
 
-	public Long getId() {
-		return id;
+	public Long getIdTravelAgency() {
+		return idTravelAgency;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdTravelAgency(Long idTravelAgency) {
+		this.idTravelAgency = idTravelAgency;
 	}
 
 	public String getCodeCadastur() {
@@ -84,7 +84,7 @@ public class TravelAgency implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(codeCadastur, createdOn, id, isActive, isPhysicalAgency, modifiedOn);
+		return Objects.hash(codeCadastur, createdOn, idTravelAgency, isActive, isPhysicalAgency, modifiedOn);
 	}
 
 	@Override
@@ -97,7 +97,7 @@ public class TravelAgency implements Serializable{
 			return false;
 		TravelAgency other = (TravelAgency) obj;
 		return Objects.equals(codeCadastur, other.codeCadastur) && Objects.equals(createdOn, other.createdOn)
-				&& Objects.equals(id, other.id) && isActive == other.isActive
+				&& Objects.equals(idTravelAgency, other.idTravelAgency) && isActive == other.isActive
 				&& Objects.equals(isPhysicalAgency, other.isPhysicalAgency)
 				&& Objects.equals(modifiedOn, other.modifiedOn);
 	}

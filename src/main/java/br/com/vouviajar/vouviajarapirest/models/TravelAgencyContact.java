@@ -16,8 +16,8 @@ public class TravelAgencyContact implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "ID_USER")
-	private Long id;
+	@Column(name = "ID_TRAVEL_AGENCY_CONTACT")
+	private Long idTravelAgencyContact;
 	
 	@Column(name = "EMAIL")
 	private String email; 
@@ -38,12 +38,12 @@ public class TravelAgencyContact implements Serializable{
 	@Column(name = "CREATED_ON")
 	private OffsetDateTime modifiedOn;
 
-	public Long getId() {
-		return id;
+	public Long getIdTravelAgencyContact() {
+		return idTravelAgencyContact;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdTravelAgencyContact(Long idTravelAgencyContact) {
+		this.idTravelAgencyContact = idTravelAgencyContact;
 	}
 
 	public String getEmail() {
@@ -96,7 +96,7 @@ public class TravelAgencyContact implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(createdOn, email, id, isActive, modifiedOn, phone_numer, whatsapp);
+		return Objects.hash(createdOn, email, idTravelAgencyContact, isActive, modifiedOn, phone_numer, whatsapp);
 	}
 
 	@Override
@@ -109,7 +109,7 @@ public class TravelAgencyContact implements Serializable{
 			return false;
 		TravelAgencyContact other = (TravelAgencyContact) obj;
 		return Objects.equals(createdOn, other.createdOn) && Objects.equals(email, other.email)
-				&& Objects.equals(id, other.id) && isActive == other.isActive
+				&& Objects.equals(idTravelAgencyContact, other.idTravelAgencyContact) && isActive == other.isActive
 				&& Objects.equals(modifiedOn, other.modifiedOn) && Objects.equals(phone_numer, other.phone_numer)
 				&& Objects.equals(whatsapp, other.whatsapp);
 	}
