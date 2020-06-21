@@ -1,4 +1,4 @@
-package com.example.vouviajarapirest.models;
+package br.com.vouviajar.vouviajarapirest.models;
 
 import java.time.OffsetDateTime;
 import java.util.Objects;

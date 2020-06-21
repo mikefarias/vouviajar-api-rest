@@ -1,4 +1,4 @@
-package com.example.vouviajarapirest;
+package br.com.vouviajar.vouviajarapirest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

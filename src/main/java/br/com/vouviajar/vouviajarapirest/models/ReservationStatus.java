@@ -1,4 +1,4 @@
-package com.example.vouviajarapirest.models;
+package br.com.vouviajar.vouviajarapirest.models;
 
 import java.io.Serializable;
 import java.util.Objects;

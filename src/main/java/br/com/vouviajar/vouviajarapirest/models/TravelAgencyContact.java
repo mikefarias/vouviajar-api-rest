@@ -1,4 +1,4 @@
-package com.example.vouviajarapirest.models;
+package br.com.vouviajar.vouviajarapirest.models;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TRAVEL_AGENCY", schema = "VOU_VIAJAR")
-public class TravelAgency implements Serializable{
+@Table(name = "CONTACT_TRAVEL_AGENCY", schema = "VOU_VIAJAR")
+public class TravelAgencyContact implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -19,11 +19,15 @@ public class TravelAgency implements Serializable{
 	@Column(name = "ID_USER")
 	private Long id;
 	
-	@Column(name = "CODE_CADASTUR")
-	private String codeCadastur;
-		
-	@Column(name = "IS_PHYSICAL_AGENCY")
-	private String isPhysicalAgency;
+	@Column(name = "EMAIL")
+	private String email; 
+	
+	@Column(name = "PHONE_NUMBER")
+	private String phone_numer;
+
+	
+	@Column(name = "WHATSAPP" )
+	private String whatsapp;
 	
 	@Column(name = "IS_ACTIVE")
 	private boolean isActive;
@@ -42,20 +46,28 @@ public class TravelAgency implements Serializable{
 		this.id = id;
 	}
 
-	public String getCodeCadastur() {
-		return codeCadastur;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setCodeCadastur(String codeCadastur) {
-		this.codeCadastur = codeCadastur;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getIsPhysicalAgency() {
-		return isPhysicalAgency;
+	public String getPhone_numer() {
+		return phone_numer;
 	}
 
-	public void setIsPhysicalAgency(String isPhysicalAgency) {
-		this.isPhysicalAgency = isPhysicalAgency;
+	public void setPhone_numer(String phone_numer) {
+		this.phone_numer = phone_numer;
+	}
+
+	public String getWhatsapp() {
+		return whatsapp;
+	}
+
+	public void setWhatsapp(String whatsapp) {
+		this.whatsapp = whatsapp;
 	}
 
 	public boolean isActive() {
@@ -84,7 +96,7 @@ public class TravelAgency implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(codeCadastur, createdOn, id, isActive, isPhysicalAgency, modifiedOn);
+		return Objects.hash(createdOn, email, id, isActive, modifiedOn, phone_numer, whatsapp);
 	}
 
 	@Override
@@ -95,11 +107,11 @@ public class TravelAgency implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TravelAgency other = (TravelAgency) obj;
-		return Objects.equals(codeCadastur, other.codeCadastur) && Objects.equals(createdOn, other.createdOn)
+		TravelAgencyContact other = (TravelAgencyContact) obj;
+		return Objects.equals(createdOn, other.createdOn) && Objects.equals(email, other.email)
 				&& Objects.equals(id, other.id) && isActive == other.isActive
-				&& Objects.equals(isPhysicalAgency, other.isPhysicalAgency)
-				&& Objects.equals(modifiedOn, other.modifiedOn);
+				&& Objects.equals(modifiedOn, other.modifiedOn) && Objects.equals(phone_numer, other.phone_numer)
+				&& Objects.equals(whatsapp, other.whatsapp);
 	}
 	
 }
