@@ -1,4 +1,4 @@
-package com.example.vouviajarapirest;
+package br.com.vouviajar.vouviajarapirest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
