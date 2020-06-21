@@ -10,15 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TRAVEL", schema = "VOU_VIAJAR")
-public class Travel implements Serializable{
-	
+@Table(name="TravelSugestion", schema="VOU_VIAJAR")
+public class TravelSugestion implements Serializable{
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="ID_TRAVEL")
-	private Long idTravel; 
+	@Column(name="ID_TRAVEL_SUGESTION")
+	private Long idTravelSugestion;
 	
+	@Column(name="ID_PERSON")
+	private Person idPerson;
+		
 	@Column(name="TITLE")
 	private String title;
 	
@@ -39,24 +42,9 @@ public class Travel implements Serializable{
 	
 	@Column(name="VACANCIES")
 	private int vacancies;
-
-	@Column(name="VACANCIES_AVAILABLE")
-	private int vacancies_available;
-				
-	@Column(name="ID_TRAVEL_TYPE")
-	private TravelType idTravelType; 
 	
-	@Column(name="ID_TRAVEL_STATUS")
-	private TravelStatus idTravelStatus;
-	
-	@Column(name="ID_TRAVEL_PACKAGE")
-	private TravelPackage idTravelPackage;
-
 	@Column(name = "REGISTRATION_USER")
 	private User registrationUser;
-
-	@Column(name = "ID_TRAVEL_AGENCY")
-	private TravelAgency idTravelAgency;
 
 	@Column(name = "IS_ACTIVE")
 	private boolean isActive;
@@ -67,12 +55,20 @@ public class Travel implements Serializable{
 	@Column(name = "MODIFIED_ON")
 	private OffsetDateTime modifiedOn;
 
-	public Long getIdTravel() {
-		return idTravel;
+	public Long getIdTravelSugestion() {
+		return idTravelSugestion;
 	}
 
-	public void setIdTravel(Long idTravel) {
-		this.idTravel = idTravel;
+	public void setIdTravelSugestion(Long idTravelSugestion) {
+		this.idTravelSugestion = idTravelSugestion;
+	}
+
+	public Person getIdPerson() {
+		return idPerson;
+	}
+
+	public void setIdPerson(Person idPerson) {
+		this.idPerson = idPerson;
 	}
 
 	public String getTitle() {
@@ -131,52 +127,12 @@ public class Travel implements Serializable{
 		this.vacancies = vacancies;
 	}
 
-	public int getVacancies_available() {
-		return vacancies_available;
-	}
-
-	public void setVacancies_available(int vacancies_available) {
-		this.vacancies_available = vacancies_available;
-	}
-
-	public TravelType getIdTravelType() {
-		return idTravelType;
-	}
-
-	public void setIdTravelType(TravelType idTravelType) {
-		this.idTravelType = idTravelType;
-	}
-
-	public TravelStatus getIdTravelStatus() {
-		return idTravelStatus;
-	}
-
-	public void setIdTravelStatus(TravelStatus idTravelStatus) {
-		this.idTravelStatus = idTravelStatus;
-	}
-
-	public TravelPackage getIdTravelPackage() {
-		return idTravelPackage;
-	}
-
-	public void setIdTravelPackage(TravelPackage idTravelPackage) {
-		this.idTravelPackage = idTravelPackage;
-	}
-
 	public User getRegistrationUser() {
 		return registrationUser;
 	}
 
 	public void setRegistrationUser(User registrationUser) {
 		this.registrationUser = registrationUser;
-	}
-
-	public TravelAgency getIdTravelAgency() {
-		return idTravelAgency;
-	}
-
-	public void setIdTravelAgency(TravelAgency idTravelAgency) {
-		this.idTravelAgency = idTravelAgency;
 	}
 
 	public boolean isActive() {
@@ -205,9 +161,8 @@ public class Travel implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(createdOn, destiny, details, end_time, idTravelAgency, idTravelPackage, idTravelStatus,
-				idTravelType, idTravel, isActive, modifiedOn, origin, registrationUser, start_time, title, vacancies,
-				vacancies_available);
+		return Objects.hash(createdOn, destiny, details, end_time, idPerson, idTravelSugestion, isActive, modifiedOn,
+				origin, registrationUser, start_time, title, vacancies);
 	}
 
 	@Override
@@ -218,18 +173,15 @@ public class Travel implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Travel other = (Travel) obj;
+		TravelSugestion other = (TravelSugestion) obj;
 		return Objects.equals(createdOn, other.createdOn) && Objects.equals(destiny, other.destiny)
 				&& Objects.equals(details, other.details) && Objects.equals(end_time, other.end_time)
-				&& Objects.equals(idTravelAgency, other.idTravelAgency)
-				&& Objects.equals(idTravelPackage, other.idTravelPackage)
-				&& Objects.equals(idTravelStatus, other.idTravelStatus)
-				&& Objects.equals(idTravelType, other.idTravelType) && Objects.equals(idTravel, other.idTravel)
-				&& isActive == other.isActive && Objects.equals(modifiedOn, other.modifiedOn)
-				&& Objects.equals(origin, other.origin) && Objects.equals(registrationUser, other.registrationUser)
+				&& Objects.equals(idPerson, other.idPerson)
+				&& Objects.equals(idTravelSugestion, other.idTravelSugestion) && isActive == other.isActive
+				&& Objects.equals(modifiedOn, other.modifiedOn) && Objects.equals(origin, other.origin)
+				&& Objects.equals(registrationUser, other.registrationUser)
 				&& Objects.equals(start_time, other.start_time) && Objects.equals(title, other.title)
-				&& vacancies == other.vacancies && vacancies_available == other.vacancies_available;
+				&& vacancies == other.vacancies;
 	}
-		
-
+	
 }
