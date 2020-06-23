@@ -7,11 +7,13 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name="RESERVATION", schema="VOU_VIAJAR")
+@Table(name="RESERVATION", schema="vouviajar")
 public class Reservation implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -20,13 +22,16 @@ public class Reservation implements Serializable{
 	@Column(name="ID_RESERVATION")
 	private Long idReservation;
 	
-	@Column(name="ID_TRAVEL_PACKAGE_CONTRACT")
+	@OneToOne
+	@JoinColumn(name="ID_TRAVEL_PACKAGE_CONTRACT")
 	private TravelPackageContract idTravelPackageContract;
 	
-	@Column(name="ID_PERSON")
+	@OneToOne
+	@JoinColumn(name="ID_PERSON")
 	private Person idPerson;
 	
-	@Column(name="ID_RESERVATION_STATUS")
+	@OneToOne
+	@JoinColumn(name="ID_RESERVATION_STATUS")
 	private ReservationStatus idReservationStatus;
 	
 	@Column(name = "IS_ACTIVE")
@@ -35,7 +40,7 @@ public class Reservation implements Serializable{
 	@Column(name = "CREATED_ON")
 	private OffsetDateTime createdOn;
 	
-	@Column(name = "CREATED_ON")
+	@Column(name = "MODIFIED_ON")
 	private OffsetDateTime modifiedOn;
 
 	public Long getIdReservation() {

@@ -7,10 +7,13 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TRAVEL_PACKAGE", schema="VOU_VIAJAR")
+@Table(name="TRAVEL_PACKAGE", schema="vouviajar")
 public class TravelPackage implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -25,10 +28,12 @@ public class TravelPackage implements Serializable{
 	@Column(name="INVESTIMENT")
 	private double investiment;
 	
-	@Column(name="ID_TRAVEL")
+	@ManyToOne
+	@JoinColumn(name="ID_TRAVEL")
 	private Travel idTravel;
 	
-	@Column(name = "REGISTRATION_USER")
+	@OneToOne
+	@JoinColumn(name = "REGISTRATION_USER")
 	private User registrationUser;
 
 	@Column(name = "IS_ACTIVE")

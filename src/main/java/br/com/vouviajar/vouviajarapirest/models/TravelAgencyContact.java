@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CONTACT_TRAVEL_AGENCY", schema = "VOU_VIAJAR")
+@Table(name = "CONTACT_TRAVEL_AGENCY", schema = "vouviajar")
 public class TravelAgencyContact implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -25,7 +25,6 @@ public class TravelAgencyContact implements Serializable{
 	@Column(name = "PHONE_NUMBER")
 	private String phone_numer;
 
-	
 	@Column(name = "WHATSAPP" )
 	private String whatsapp;
 	
@@ -35,7 +34,7 @@ public class TravelAgencyContact implements Serializable{
 	@Column(name = "CREATED_ON")
 	private OffsetDateTime createdOn;
 	
-	@Column(name = "CREATED_ON")
+	@Column(name = "MODIFIED_ON")
 	private OffsetDateTime modifiedOn;
 
 	public Long getIdTravelAgencyContact() {

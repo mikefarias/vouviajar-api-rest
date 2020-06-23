@@ -6,10 +6,12 @@ import java.time.OffsetDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TRAVEL_CONTRACT", schema="VOU_VIAJAR")
+@Table(name="TRAVEL_CONTRACT", schema="vouviajar")
 public class TravelContract implements Serializable{
 
 	private final static long serialVersionUID = 1L;
@@ -21,7 +23,8 @@ public class TravelContract implements Serializable{
 	@Column(name="TERMS")
 	private String terms;
 	
-	@Column(name = "ID_TRAVEL_AGENCY")
+	@OneToOne
+	@JoinColumn(name = "ID_TRAVEL_AGENCY")
 	private TravelAgency idTravelAgency;
 
 	@Column(name = "IS_ACTIVE")

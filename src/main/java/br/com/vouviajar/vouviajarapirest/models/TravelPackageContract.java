@@ -7,10 +7,12 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TRAVEL_PACKAGE_CONTRACT", schema="VOU_VIAJAR")
+@Table(name="TRAVEL_PACKAGE_CONTRACT", schema="vouviajar")
 public class TravelPackageContract implements Serializable{
 
 	private final static long serialVersionUID = 1L;
@@ -19,13 +21,16 @@ public class TravelPackageContract implements Serializable{
 	@Column(name="ID_TRAVEL_PACKAGE_CONTRACT")
 	private Long idTravelPackageContract;
 	
-	@Column(name = "ID_TRAVEL_CONTRACT")
+	@OneToOne
+	@JoinColumn(name = "ID_TRAVEL_CONTRACT")
 	private TravelContract idTravelContract;
 
-	@Column(name = "ID_TRAVEL_PACKAGE")
+	@OneToOne
+	@JoinColumn(name = "ID_TRAVEL_PACKAGE")
 	private TravelPackage idTravelPackage;
-
-	@Column(name = "ID_TRAVEL_AGENCY")
+	
+	@OneToOne
+	@JoinColumn(name = "ID_TRAVEL_AGENCY")
 	private TravelAgency idTravelAgency;
 
 	@Column(name = "IS_ACTIVE")

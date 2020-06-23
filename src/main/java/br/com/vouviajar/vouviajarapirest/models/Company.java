@@ -10,11 +10,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "COMPANY", schema = "VOU_VIAJAR")
+@Table(name = "COMPANY", schema = "vouviajar")
 public class Company implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -23,24 +26,26 @@ public class Company implements Serializable{
 	@Column(name = "ID_COMPANY")
 	private Long idCompany;
 	
+	@OneToOne
+	@JoinColumn(name = "ID_USER")
+	private User idUser;
+	
 	@Column(name = "NAME")
 	private String name; 
 	
 	@Column(name = "CNPJ")
 	private String cnpj;
-
-	@Lob
-	@Basic(fetch = FetchType.LAZY)
-	@Column(name = "LOGO", columnDefinition="BLOB")
-	private byte[] logo;
 	
-	@Column(name = "ADDRESS")
+	@OneToOne
+	@JoinColumn(name = "ID_ADDRESS")
 	private Address address;
 
-	@Column(name = "TRAVEL_AGENCY")
+	@OneToOne
+	@JoinColumn(name = "ID_TRAVEL_AGENCY")
 	private TravelAgency travelAgency;
 
-	@Column(name = "CONTACT_TRAVEL_AGENCY")
+	@OneToOne
+	@JoinColumn(name = "ID_CONTACT_TRAVEL_AGENCY")
 	private TravelAgencyContact contactTravelAgency;
 	
 	@Column(name = "IS_ACTIVE")
@@ -49,7 +54,7 @@ public class Company implements Serializable{
 	@Column(name = "CREATED_ON")
 	private OffsetDateTime createdOn;
 	
-	@Column(name = "CREATED_ON")
+	@Column(name = "MODIFIED_ON")
 	private OffsetDateTime modifiedOn;
 
 	public Long getIdCompany() {
@@ -59,7 +64,15 @@ public class Company implements Serializable{
 	public void setIdCompany(Long idCompany) {
 		this.idCompany = idCompany;
 	}
+	
+	public void setIdUser(User idUser) {
+		this.idUser = idUser;
+	}
 
+	public User getIdUser() {
+		return idUser;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -74,14 +87,6 @@ public class Company implements Serializable{
 
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
-	}
-
-	public byte[] getLogo() {
-		return logo;
-	}
-
-	public void setLogo(byte[] logo) {
-		this.logo = logo;
 	}
 
 	public Address getAddress() {
@@ -136,8 +141,7 @@ public class Company implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Arrays.hashCode(logo);
-		result = prime * result + Objects.hash(address, cnpj, contactTravelAgency, createdOn, idCompany, isActive,
+		result = prime * result + Objects.hash(address, cnpj, contactTravelAgency, createdOn, idCompany, idUser, isActive,
 				modifiedOn, name, travelAgency);
 		return result;
 	}
@@ -154,7 +158,7 @@ public class Company implements Serializable{
 		return Objects.equals(address, other.address) && Objects.equals(cnpj, other.cnpj)
 				&& Objects.equals(contactTravelAgency, other.contactTravelAgency)
 				&& Objects.equals(createdOn, other.createdOn) && Objects.equals(idCompany, other.idCompany)
-				&& isActive == other.isActive && Arrays.equals(logo, other.logo)
+				&& Objects.equals(idUser, other.idUser) && isActive == other.isActive
 				&& Objects.equals(modifiedOn, other.modifiedOn) && Objects.equals(name, other.name)
 				&& Objects.equals(travelAgency, other.travelAgency);
 	}

@@ -7,10 +7,12 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TRAVEL_AGENCY", schema = "VOU_VIAJAR")
+@Table(name = "TRAVEL_AGENCY", schema = "vouviajar")
 public class TravelAgency implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -25,13 +27,17 @@ public class TravelAgency implements Serializable{
 	@Column(name = "IS_PHYSICAL_AGENCY")
 	private String isPhysicalAgency;
 	
+	@OneToOne
+	@JoinColumn(name="ID_TRAVEL_AGENCY_CONTACT")
+	private TravelAgencyContact idTravelAgencyContact;
+	
 	@Column(name = "IS_ACTIVE")
 	private boolean isActive;
 	
 	@Column(name = "CREATED_ON")
 	private OffsetDateTime createdOn;
 	
-	@Column(name = "CREATED_ON")
+	@Column(name = "MODIFIED_ON")
 	private OffsetDateTime modifiedOn;
 
 	public Long getIdTravelAgency() {
@@ -56,6 +62,14 @@ public class TravelAgency implements Serializable{
 
 	public void setIsPhysicalAgency(String isPhysicalAgency) {
 		this.isPhysicalAgency = isPhysicalAgency;
+	}
+
+	public TravelAgencyContact getTravelAgencyContact() {
+		return idTravelAgencyContact;
+	}
+
+	public void setTravelAgencyContact(TravelAgencyContact idTravelAgencyContact) {
+		this.idTravelAgencyContact = idTravelAgencyContact;
 	}
 
 	public boolean isActive() {
@@ -84,7 +98,8 @@ public class TravelAgency implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(codeCadastur, createdOn, idTravelAgency, isActive, isPhysicalAgency, modifiedOn);
+		return Objects.hash(codeCadastur, createdOn, idTravelAgency, idTravelAgencyContact, isActive, isPhysicalAgency,
+				modifiedOn);
 	}
 
 	@Override
@@ -97,7 +112,8 @@ public class TravelAgency implements Serializable{
 			return false;
 		TravelAgency other = (TravelAgency) obj;
 		return Objects.equals(codeCadastur, other.codeCadastur) && Objects.equals(createdOn, other.createdOn)
-				&& Objects.equals(idTravelAgency, other.idTravelAgency) && isActive == other.isActive
+				&& Objects.equals(idTravelAgency, other.idTravelAgency)
+				&& Objects.equals(idTravelAgencyContact, other.idTravelAgencyContact) && isActive == other.isActive
 				&& Objects.equals(isPhysicalAgency, other.isPhysicalAgency)
 				&& Objects.equals(modifiedOn, other.modifiedOn);
 	}

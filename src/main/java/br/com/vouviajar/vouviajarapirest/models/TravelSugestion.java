@@ -7,10 +7,12 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TravelSugestion", schema="VOU_VIAJAR")
+@Table(name="TravelSugestion", schema="vouviajar")
 public class TravelSugestion implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -19,7 +21,8 @@ public class TravelSugestion implements Serializable{
 	@Column(name="ID_TRAVEL_SUGESTION")
 	private Long idTravelSugestion;
 	
-	@Column(name="ID_PERSON")
+	@OneToOne
+	@JoinColumn(name="ID_PERSON")
 	private Person idPerson;
 		
 	@Column(name="TITLE")
@@ -43,7 +46,8 @@ public class TravelSugestion implements Serializable{
 	@Column(name="VACANCIES")
 	private int vacancies;
 	
-	@Column(name = "REGISTRATION_USER")
+	@OneToOne
+	@JoinColumn(name = "REGISTRATION_USER")
 	private User registrationUser;
 
 	@Column(name = "IS_ACTIVE")

@@ -10,18 +10,24 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PERSON", schema = "VOU_VIAJAR")
+@Table(name = "PERSON", schema = "vouviajar")
 public class Person implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "ID_USER")
-	private Long id;
+	@Column(name="ID_PERSON")
+	private Long idPerson;
+	
+	@OneToOne
+	@JoinColumn(name = "ID_USER")
+	private User idUser;
 	
 	@Column(name = "NAME")
 	private String name;
@@ -38,20 +44,24 @@ public class Person implements Serializable {
 	@Column(name = "MODIFIED_ON")
 	private OffsetDateTime modifiedOn;
 
-	@Lob
-	@Basic(fetch = FetchType.LAZY)
-	@Column(name = "IMG_GRUPO", columnDefinition="BLOB")
-	private byte[] imagem;
-	
-	@Column(name = "ADDRESS")
+	@OneToOne
+	@JoinColumn(name = "ADDRESS")
 	private Address address;
 
-	public Long getId() {
-		return id;
+	public Long getIdPerson() {
+		return idPerson;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdPerson(Long idPerson) {
+		this.idPerson = idPerson;
+	}
+
+	public void setIdUser(User idUser) {
+		this.idUser = idUser;
+	}
+
+	public User getIdUser() {
+		return idUser;
 	}
 
 	public String getName() {
@@ -94,14 +104,6 @@ public class Person implements Serializable {
 		this.modifiedOn = modifiedOn;
 	}
 
-	public byte[] getImagem() {
-		return imagem;
-	}
-
-	public void setImagem(byte[] imagem) {
-		this.imagem = imagem;
-	}
-
 	public Address getAddress() {
 		return address;
 	}
@@ -112,11 +114,7 @@ public class Person implements Serializable {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + Arrays.hashCode(imagem);
-		result = prime * result + Objects.hash(address, cpf, createdOn, id, modifiedOn, name, phoneNumber);
-		return result;
+		return Objects.hash(address, cpf, createdOn, idPerson, idUser, modifiedOn, name, phoneNumber);
 	}
 
 	@Override
@@ -129,8 +127,8 @@ public class Person implements Serializable {
 			return false;
 		Person other = (Person) obj;
 		return Objects.equals(address, other.address) && Objects.equals(cpf, other.cpf)
-				&& Objects.equals(createdOn, other.createdOn) && Objects.equals(id, other.id)
-				&& Arrays.equals(imagem, other.imagem) && Objects.equals(modifiedOn, other.modifiedOn)
+				&& Objects.equals(createdOn, other.createdOn) && Objects.equals(idPerson, other.idPerson)
+				&& Objects.equals(idUser, other.idUser) && Objects.equals(modifiedOn, other.modifiedOn)
 				&& Objects.equals(name, other.name) && Objects.equals(phoneNumber, other.phoneNumber);
 	}
 	
