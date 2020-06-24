@@ -5,14 +5,38 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "USER", schema = "vouviajar")
 public class User {
+	
+	public User() {
+	}
+	
+	public User(String email, String password) {
+		this.email = email;
+		this.password = password;
+	}
 
+	public User(String email, String password, String name, boolean isActive, boolean isEnable, boolean isStaff,
+			OffsetDateTime dateJoined, OffsetDateTime createdOn, OffsetDateTime modifiedOn) {
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.isActive = isActive;
+		this.isEnable = isEnable;
+		this.isStaff = isStaff;
+		this.dateJoined = dateJoined;
+		this.createdOn = createdOn;
+		this.modifiedOn = modifiedOn;
+	}
+	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_USER")
 	private Long id;
 	
