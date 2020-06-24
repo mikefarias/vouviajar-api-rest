@@ -11,8 +11,7 @@ import br.com.vouviajar.vouviajarapirest.models.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<User> findByEmail(String username);
+    User findByEmail(String username);
 
     Optional<User> findById(Long idUser);
 } 
-

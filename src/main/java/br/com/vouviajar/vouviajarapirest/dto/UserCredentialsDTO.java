@@ -38,5 +38,5 @@ public class UserCredentialsDTO extends User{
 	public User toUser(){
         return new User( getEmail(), getPassword());
     }
-
+	
 }

@@ -146,7 +146,12 @@ public class User {
 	public void setModifiedOn(OffsetDateTime modifiedOn) {
 		this.modifiedOn = modifiedOn;
 	}
-
+	
+	public boolean isEmpty() {
+		boolean isEmpty = email == "" && password == "" ? true : false;
+		return isEmpty;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(createdOn, dateJoined, email, id, isActive, isEnable, isStaff, modifiedOn, name, password);
