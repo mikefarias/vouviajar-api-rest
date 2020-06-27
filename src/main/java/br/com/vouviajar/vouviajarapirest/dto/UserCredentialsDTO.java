@@ -1,8 +1,10 @@
 package br.com.vouviajar.vouviajarapirest.dto;
 
+import java.util.Optional;
+
 import br.com.vouviajar.vouviajarapirest.models.User;
 
-public class UserCredentialsDTO extends User{
+public class UserCredentialsDTO{
    
 	public UserCredentialsDTO(String email, String password) {
 		super();
@@ -32,7 +34,11 @@ public class UserCredentialsDTO extends User{
 
 	public static UserCredentialsDTO toDTO(User user){
         return new UserCredentialsDTO(user.getEmail(), user.getPassword());
-
+    }
+	
+	public static UserCredentialsDTO toDTO(Optional<User> userOptional){
+		User user = userOptional.get();
+        return new UserCredentialsDTO(user.getEmail(), user.getPassword());
     }
 	
 	public User toUser(){

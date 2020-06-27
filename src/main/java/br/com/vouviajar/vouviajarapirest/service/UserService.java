@@ -1,6 +1,7 @@
 package br.com.vouviajar.vouviajarapirest.service;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import br.com.vouviajar.vouviajarapirest.models.User;
 import br.com.vouviajar.vouviajarapirest.repository.UserRepository;
 
 @Service
-public class UserService {
+public class UserService extends User{
     
     private UserRepository userRepository; 
 
@@ -22,6 +23,16 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public Optional<User> getById(Long id) {
+    	
+    	return userRepository.findById(id);
+    }
+
+    public List<User> getAll() {
+    	
+    	return userRepository.findAll();
+    }
+    
     public User register(User user){
         
     	if(user.getEmail() == null || user.getPassword()==null 
@@ -76,7 +87,6 @@ public class UserService {
     	if( user_db == null) {
     		throw new UserNotFoundException(); 
     	}
-    	
     	User user = user_db.get();
     	user.setActive(false);
     	userRepository.save(user);
