@@ -1,12 +1,14 @@
 package br.com.vouviajar.vouviajarapirest.dto;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import br.com.vouviajar.vouviajarapirest.models.User;
 
-public class UserCredentialsDTO{
+public class UserDTO{
    
-	public UserCredentialsDTO(String email, String password) {
+	public UserDTO(String email, String password) {
 		super();
 		this.email = email;
 		this.password = password;
@@ -32,15 +34,25 @@ public class UserCredentialsDTO{
 		this.password = password;
 	}
 
-	public static UserCredentialsDTO toDTO(User user){
-        return new UserCredentialsDTO(user.getEmail(), user.getPassword());
+	public static UserDTO toDTO(User user){
+        return new UserDTO(user.getEmail(), user.getPassword());
     }
 	
-	public static UserCredentialsDTO toDTO(Optional<User> userOptional){
+	public static UserDTO toDTO(Optional<User> userOptional){
 		User user = userOptional.get();
-        return new UserCredentialsDTO(user.getEmail(), user.getPassword());
+        return new UserDTO(user.getEmail(), user.getPassword());
     }
-	
+
+	public static List<UserDTO> toDTO(List<User> users){
+		
+		List<UserDTO> usersDTO = new ArrayList<UserDTO>();
+		
+		for(User user : users) {
+			usersDTO.add(toDTO(user));
+		}
+        return usersDTO;
+    }
+
 	public User toUser(){
         return new User( getEmail(), getPassword());
     }
