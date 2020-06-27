@@ -6,11 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.vouviajar.vouviajarapirest.dto.UserCredentialsDTO;
-import br.com.vouviajar.vouviajarapirest.exception.PasswordInvalidException;
 import br.com.vouviajar.vouviajarapirest.exception.UninformedCredentialsException;
 import br.com.vouviajar.vouviajarapirest.exception.UserAlreadyRegisteredException;
-import br.com.vouviajar.vouviajarapirest.exception.EmailInvalidException;
+import br.com.vouviajar.vouviajarapirest.exception.UserNotFoundException;
 import br.com.vouviajar.vouviajarapirest.models.User;
 import br.com.vouviajar.vouviajarapirest.repository.UserRepository;
 
@@ -25,14 +23,15 @@ public class UserService {
     }
 
     public User register(User user){
-
-    	if(user.equals(null) || user.isEmpty()){
+        
+    	if(user.getEmail() == null || user.getPassword()==null 
+    			|| user.getEmail() == "" || user.getPassword() == ""){
     		throw new UninformedCredentialsException();
     	}
-    	
-        if(userRepository.findByEmail(user.getEmail()) == null) {
+    	  
+        if(userRepository.findByEmail(user.getEmail()) != null) {
         	throw new UserAlreadyRegisteredException();
-        }
+        }            
         
         return registerUser(user);
     }
@@ -45,6 +44,41 @@ public class UserService {
     	user.setModifiedOn(OffsetDateTime.now());
     	user.setStaff(false);
     	return userRepository.save(user);
+    }
+    
+    public User update(User user, Long id) {
+    	
+    	if(user.getEmail() == null || user.getPassword()==null 
+    			|| user.getEmail() == "" || user.getPassword() == ""){
+    		throw new UninformedCredentialsException();
+    	}
+    	  
+    	Optional<User> user_db = userRepository.findById(id);;
+    	if( user_db == null) {
+    		throw new UserNotFoundException(); 
+    	}
+    	
+    	return updateUser(user, user_db.get());
+    }
+    
+    private User updateUser(User user, User user_db) {
+    	
+    	user_db.setEmail(user.getEmail());
+    	user_db.setPassword(user.getPassword());
+    	user_db.setModifiedOn(OffsetDateTime.now());
+    	
+    	return userRepository.save(user_db);
+    }
+    
+    public void validate(User user) {
+    	if(user.getEmail() == null || user.getPassword()==null 
+    			|| user.getEmail() == "" || user.getPassword() == ""){
+    		throw new UninformedCredentialsException();
+    	}
+    	  
+        if(userRepository.findByEmail(user.getEmail()) != null) {
+        	throw new UserAlreadyRegisteredException();
+        }    	
     }
     
 }
