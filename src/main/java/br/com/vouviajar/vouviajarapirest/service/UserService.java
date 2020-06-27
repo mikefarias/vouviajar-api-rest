@@ -70,15 +70,16 @@ public class UserService {
     	return userRepository.save(user_db);
     }
     
-    public void validate(User user) {
-    	if(user.getEmail() == null || user.getPassword()==null 
-    			|| user.getEmail() == "" || user.getPassword() == ""){
-    		throw new UninformedCredentialsException();
+    public void delete(Long id) {
+    	
+    	Optional<User> user_db = userRepository.findById(id);;
+    	if( user_db == null) {
+    		throw new UserNotFoundException(); 
     	}
-    	  
-        if(userRepository.findByEmail(user.getEmail()) != null) {
-        	throw new UserAlreadyRegisteredException();
-        }    	
+    	
+    	User user = user_db.get();
+    	user.setActive(false);
+    	userRepository.save(user);
+    	
     }
-    
 }

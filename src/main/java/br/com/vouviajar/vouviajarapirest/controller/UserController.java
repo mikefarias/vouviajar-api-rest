@@ -36,4 +36,10 @@ public class UserController {
     	return  new ResponseEntity<UserCredentialsDTO>(UserCredentialsDTO.toDTO(user), HttpStatus.CREATED);
     }
 
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<UserCredentialsDTO> delete(@RequestBody UserCredentialsDTO userCredentialsDTO, @PathVariable Long id ){
+    	User user = userService.update(userCredentialsDTO.toUser(), id);    	
+    	return  new ResponseEntity<UserCredentialsDTO>(UserCredentialsDTO.toDTO(user), HttpStatus.CREATED);
+    }
+
 }
