@@ -9,7 +9,6 @@ import br.com.vouviajar.vouviajarapirest.models.User;
 public class UserDTO{
    
 	public UserDTO(String email, String password) {
-		super();
 		this.email = email;
 		this.password = password;
 	}

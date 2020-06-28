@@ -6,6 +6,8 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -15,9 +17,20 @@ import javax.persistence.Table;
 @Table(name = "TRAVEL_AGENCY", schema = "vouviajar")
 public class TravelAgency implements Serializable{
 
+	public TravelAgency(){
+		
+	}
+	
+	public TravelAgency(String codeCadastur, boolean isPhysicalAgency) {
+		this.codeCadastur = codeCadastur;
+		this.isPhysicalAgency = isPhysicalAgency;
+	}
+		
 	private static final long serialVersionUID = 1L;
+	
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_TRAVEL_AGENCY")
 	private Long idTravelAgency;
 	
@@ -25,7 +38,7 @@ public class TravelAgency implements Serializable{
 	private String codeCadastur;
 		
 	@Column(name = "IS_PHYSICAL_AGENCY")
-	private String isPhysicalAgency;
+	private boolean isPhysicalAgency;
 	
 	@OneToOne
 	@JoinColumn(name="ID_TRAVEL_AGENCY_CONTACT")
@@ -56,11 +69,11 @@ public class TravelAgency implements Serializable{
 		this.codeCadastur = codeCadastur;
 	}
 
-	public String getIsPhysicalAgency() {
+	public boolean getIsPhysicalAgency() {
 		return isPhysicalAgency;
 	}
 
-	public void setIsPhysicalAgency(String isPhysicalAgency) {
+	public void setIsPhysicalAgency(boolean isPhysicalAgency) {
 		this.isPhysicalAgency = isPhysicalAgency;
 	}
 

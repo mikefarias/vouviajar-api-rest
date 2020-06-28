@@ -48,19 +48,19 @@ public class UserController {
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public ResponseEntity<UserDTO> register(@RequestBody UserDTO userCredentialsDTO){
         User user = userService.register(userCredentialsDTO.toUser());
-        return  new ResponseEntity<UserDTO>(UserDTO.toDTO(user), HttpStatus.CREATED);
+        return new ResponseEntity<UserDTO>(UserDTO.toDTO(user), HttpStatus.CREATED);
     }
     
     @RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
     public ResponseEntity<UserDTO> update(@RequestBody UserDTO userCredentialsDTO, @PathVariable Long id ){
     	User user = userService.update(userCredentialsDTO.toUser(), id);    	
-    	return  new ResponseEntity<UserDTO>(UserDTO.toDTO(user), HttpStatus.OK);
+    	return new ResponseEntity<UserDTO>(UserDTO.toDTO(user), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<UserDTO> delete(@PathVariable Long id ){
     	userService.delete(id);    	
-    	return  new ResponseEntity<>( HttpStatus.OK);
+    	return new ResponseEntity<>( HttpStatus.OK);
     }
 
 }

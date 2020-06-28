@@ -14,7 +14,7 @@ import br.com.vouviajar.vouviajarapirest.models.User;
 import br.com.vouviajar.vouviajarapirest.repository.UserRepository;
 
 @Service
-public class UserService extends User{
+public class UserService{
     
     private UserRepository userRepository; 
 
