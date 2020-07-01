@@ -1,21 +1,15 @@
 package br.com.vouviajar.vouviajarapirest.models;
 
-import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "TRAVEL_AGENCY", schema = "vouviajar")
-public class TravelAgency implements Serializable{
+public class TravelAgency extends Company{
 
 	public TravelAgency(){
 		
@@ -29,20 +23,11 @@ public class TravelAgency implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_TRAVEL_AGENCY")
-	private Long idTravelAgency;
-	
 	@Column(name = "CODE_CADASTUR")
 	private String codeCadastur;
 		
 	@Column(name = "IS_PHYSICAL_AGENCY")
 	private boolean isPhysicalAgency;
-	
-	@OneToOne
-	@JoinColumn(name="ID_TRAVEL_AGENCY_CONTACT")
-	private TravelAgencyContact idTravelAgencyContact;
 	
 	@Column(name = "IS_ACTIVE")
 	private boolean isActive;
@@ -52,14 +37,6 @@ public class TravelAgency implements Serializable{
 	
 	@Column(name = "MODIFIED_ON")
 	private OffsetDateTime modifiedOn;
-
-	public Long getIdTravelAgency() {
-		return idTravelAgency;
-	}
-
-	public void setIdTravelAgency(Long idTravelAgency) {
-		this.idTravelAgency = idTravelAgency;
-	}
 
 	public String getCodeCadastur() {
 		return codeCadastur;
@@ -75,14 +52,6 @@ public class TravelAgency implements Serializable{
 
 	public void setIsPhysicalAgency(boolean isPhysicalAgency) {
 		this.isPhysicalAgency = isPhysicalAgency;
-	}
-
-	public TravelAgencyContact getTravelAgencyContact() {
-		return idTravelAgencyContact;
-	}
-
-	public void setTravelAgencyContact(TravelAgencyContact idTravelAgencyContact) {
-		this.idTravelAgencyContact = idTravelAgencyContact;
 	}
 
 	public boolean isActive() {
@@ -111,7 +80,7 @@ public class TravelAgency implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(codeCadastur, createdOn, idTravelAgency, idTravelAgencyContact, isActive, isPhysicalAgency,
+		return Objects.hash(codeCadastur, createdOn, isActive, isPhysicalAgency,
 				modifiedOn);
 	}
 
@@ -125,8 +94,7 @@ public class TravelAgency implements Serializable{
 			return false;
 		TravelAgency other = (TravelAgency) obj;
 		return Objects.equals(codeCadastur, other.codeCadastur) && Objects.equals(createdOn, other.createdOn)
-				&& Objects.equals(idTravelAgency, other.idTravelAgency)
-				&& Objects.equals(idTravelAgencyContact, other.idTravelAgencyContact) && isActive == other.isActive
+				&& isActive == other.isActive
 				&& Objects.equals(isPhysicalAgency, other.isPhysicalAgency)
 				&& Objects.equals(modifiedOn, other.modifiedOn);
 	}

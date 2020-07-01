@@ -6,18 +6,24 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "COMPANY", schema = "vouviajar")
 public class Company implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID_COMPANY")
 	private Long idCompany;
 	
@@ -34,10 +40,6 @@ public class Company implements Serializable{
 	@OneToOne
 	@JoinColumn(name = "ID_ADDRESS")
 	private Address address;
-
-	@OneToOne
-	@JoinColumn(name = "ID_TRAVEL_AGENCY")
-	private TravelAgency travelAgency;
 
 	@OneToOne
 	@JoinColumn(name = "ID_CONTACT_TRAVEL_AGENCY")
@@ -92,13 +94,6 @@ public class Company implements Serializable{
 		this.address = address;
 	}
 
-	public TravelAgency getTravelAgency() {
-		return travelAgency;
-	}
-
-	public void setTravelAgency(TravelAgency travelAgency) {
-		this.travelAgency = travelAgency;
-	}
 
 	public TravelAgencyContact getContactTravelAgency() {
 		return contactTravelAgency;
@@ -137,7 +132,7 @@ public class Company implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + Objects.hash(address, cnpj, contactTravelAgency, createdOn, idCompany, idUser, isActive,
-				modifiedOn, name, travelAgency);
+				modifiedOn, name);
 		return result;
 	}
 
@@ -154,8 +149,7 @@ public class Company implements Serializable{
 				&& Objects.equals(contactTravelAgency, other.contactTravelAgency)
 				&& Objects.equals(createdOn, other.createdOn) && Objects.equals(idCompany, other.idCompany)
 				&& Objects.equals(idUser, other.idUser) && isActive == other.isActive
-				&& Objects.equals(modifiedOn, other.modifiedOn) && Objects.equals(name, other.name)
-				&& Objects.equals(travelAgency, other.travelAgency);
+				&& Objects.equals(modifiedOn, other.modifiedOn) && Objects.equals(name, other.name);
 	}
 
 }

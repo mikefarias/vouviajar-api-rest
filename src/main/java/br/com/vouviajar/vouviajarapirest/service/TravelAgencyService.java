@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import br.com.vouviajar.vouviajarapirest.exception.InvalidDataException;
 import br.com.vouviajar.vouviajarapirest.exception.TravelAgencyAlreadyRegisteredException;
 import br.com.vouviajar.vouviajarapirest.exception.TravelAgencyNotFoundException;
-import br.com.vouviajar.vouviajarapirest.exception.UninformedCredentialsException;
 import br.com.vouviajar.vouviajarapirest.models.TravelAgency;
 import br.com.vouviajar.vouviajarapirest.repository.TravelAgencyRepository;
 
