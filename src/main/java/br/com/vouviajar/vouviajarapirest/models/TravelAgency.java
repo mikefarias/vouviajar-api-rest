@@ -58,7 +58,7 @@ public class TravelAgency extends Company{
 		return isActive;
 	}
 
-	public void setActive(boolean isActive) {
+	public void setIsActive(boolean isActive) {
 		this.isActive = isActive;
 	}
 

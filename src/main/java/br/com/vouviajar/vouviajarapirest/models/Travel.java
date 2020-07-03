@@ -6,6 +6,8 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -15,9 +17,30 @@ import javax.persistence.Table;
 @Table(name = "TRAVEL", schema = "vouviajar")
 public class Travel implements Serializable{
 	
+	public Travel() {
+		
+	}
+	
+	public Travel(String title, String details, OffsetDateTime start_time, OffsetDateTime end_time, String origin,
+			String destiny, int vacancies, int vacancies_available, TravelType idTravelType,
+			TravelStatus idTravelStatus, TravelPackage idTravelPackage) {
+		this.title = title;
+		this.details = details;
+		this.start_time = start_time;
+		this.end_time = end_time;
+		this.origin = origin;
+		this.destiny = destiny;
+		this.vacancies = vacancies;
+		this.vacancies_available = vacancies_available;
+		this.idTravelType = idTravelType;
+		this.idTravelStatus = idTravelStatus;
+		this.idTravelPackage = idTravelPackage;
+	}
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID_TRAVEL")
 	private Long idTravel; 
 	
@@ -186,12 +209,17 @@ public class Travel implements Serializable{
 		this.idTravelAgency = idTravelAgency;
 	}
 
+
 	public boolean isActive() {
 		return isActive;
 	}
 
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public OffsetDateTime getCreatedOn() {

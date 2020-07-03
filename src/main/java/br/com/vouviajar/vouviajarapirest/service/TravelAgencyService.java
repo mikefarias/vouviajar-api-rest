@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.vouviajar.vouviajarapirest.exception.InvalidDataException;
 import br.com.vouviajar.vouviajarapirest.exception.TravelAgencyAlreadyRegisteredException;
-import br.com.vouviajar.vouviajarapirest.exception.TravelAgencyNotFoundException;
+import br.com.vouviajar.vouviajarapirest.exception.NotFoundException;
 import br.com.vouviajar.vouviajarapirest.models.TravelAgency;
 import br.com.vouviajar.vouviajarapirest.repository.TravelAgencyRepository;
 
@@ -63,7 +63,7 @@ public class TravelAgencyService{
     	  
     	Optional<TravelAgency> travelAgency_db = travelAgencyRepository.findById(id);;
     	if( travelAgency_db == null) {
-    		throw new TravelAgencyNotFoundException(); 
+    		throw new NotFoundException("Travel Agency not found"); 
     	}
     	
     	return updateTravelAgency(travelAgency, travelAgency_db.get());
@@ -82,7 +82,7 @@ public class TravelAgencyService{
     	
     	Optional<TravelAgency> travelAgency_db = travelAgencyRepository.findById(id);;
     	if( travelAgency_db == null) {
-    		throw new TravelAgencyNotFoundException(); 
+    		throw new NotFoundException("Travel Agency not found"); 
     	}
     	TravelAgency travelAgency = travelAgency_db.get();
     	travelAgency.setActive(false);
