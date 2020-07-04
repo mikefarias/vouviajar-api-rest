@@ -5,38 +5,41 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ADDRESS", schema = "vouviajar")
+@Table(name="address", schema="vouviajar")
 public class Address implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "ID_ADDRESS")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_address")
 	private Long id;
 	
-	@Column(name = "ADDRESS")
+	@Column(name="address")
 	private String address;
 	
-	@Column(name = "ADDRESS2")
+	@Column(name="address2")
 	private String address2;
 	
-	@Column(name = "DISTRICT")
+	@Column(name="district")
 	private String district;
 	
-	@Column(name = "CITY")
+	@Column(name="city")
 	private String city;
 	
-	@Column(name = "STATE")
+	@Column(name="state")
 	private String state;
 	
-	@Column(name = "COUNTRY")
+	@Column(name="country")
 	private String country;
 	
-	@Column(name = "POSTAL_CODE")
+	@Column(name="postal_code")
 	private String postalCode;
 
 	public Long getId() {

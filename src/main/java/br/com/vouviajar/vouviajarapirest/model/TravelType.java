@@ -5,39 +5,42 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TRAVEL_TYPE", schema="vouviajar")
+@Table(name="travel_type", schema="vouviajar")
 public class TravelType implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="ID_TRAVEL_TYPE")
-	private Long idTravelType;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_travel_type")
+	private Long id;
 	
-	@Column(name="TRAVEL_TYPE")
-	private String travelType;
+	@Column(name="type")
+	private String type;
 
-	@Column(name="DESCRIPTION")
+	@Column(name="description")
 	private String description;
 
-	public Long getIdTravelType() {
-		return idTravelType;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdTravelType(Long idTravelType) {
-		this.idTravelType = idTravelType;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getTravelType() {
-		return travelType;
+	public String getType() {
+		return type;
 	}
 
-	public void setTravelType(String travelType) {
-		this.travelType = travelType;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getDescription() {
@@ -50,7 +53,7 @@ public class TravelType implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(description, idTravelType, travelType);
+		return Objects.hash(description, id, type);
 	}
 
 	@Override
@@ -62,8 +65,8 @@ public class TravelType implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		TravelType other = (TravelType) obj;
-		return Objects.equals(description, other.description) && Objects.equals(idTravelType, other.idTravelType)
-				&& Objects.equals(travelType, other.travelType);
+		return Objects.equals(description, other.description) && Objects.equals(id, other.id)
+				&& Objects.equals(type, other.type);
 	}
 		
 }

@@ -64,11 +64,11 @@ public class TravelService{
     	travel_db.setDestiny(travel.getDestiny());
     	travel_db.setIdTravelStatus(travel.getIdTravelStatus());
     	travel_db.setOrigin(travel.getOrigin());
-    	travel_db.setStart_time(travel.getStart_time());
-    	travel_db.setEnd_time(travel.getEnd_time());
+    	travel_db.setStartTime(travel.getStartTime());
+    	travel_db.setEndTime(travel.getEndTime());
     	travel_db.setIdTravelType(travel.getIdTravelType());
     	travel_db.setVacancies(travel.getVacancies());
-    	travel_db.setVacancies_available(travel.getVacancies_available());
+    	travel_db.setVacanciesAvailable(travel.getVacanciesAvailable());
     	travel_db.setIdTravelPackage(travel.getIdTravelPackage());
     	travel_db.setModifiedOn(OffsetDateTime.now());
     	return travelRepository.save(travel_db);

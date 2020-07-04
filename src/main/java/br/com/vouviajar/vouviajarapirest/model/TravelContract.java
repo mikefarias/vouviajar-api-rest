@@ -5,43 +5,46 @@ import java.time.OffsetDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TRAVEL_CONTRACT", schema="vouviajar")
+@Table(name="travel_contract", schema="vouviajar")
 public class TravelContract implements Serializable{
 
 	private final static long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="ID_TRAVEL_CONTRACT")
-	private Long idTravelContract;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_travel_contract")
+	private Long id;
 	
-	@Column(name="TERMS")
+	@Column(name="terms")
 	private String terms;
 	
 	@OneToOne
-	@JoinColumn(name = "ID_TRAVEL_AGENCY")
+	@JoinColumn(name="id_travel_agency")
 	private TravelAgency idTravelAgency;
 
-	@Column(name = "IS_ACTIVE")
-	private boolean isActive;
+	@Column(name="active")
+	private boolean active;
 	
-	@Column(name = "CREATED_ON")
+	@Column(name="created_on")
 	private OffsetDateTime createdOn;
 	
-	@Column(name = "MODIFIED_ON")
+	@Column(name="modified_on")
 	private OffsetDateTime modifiedOn;
 
-	public Long getIdTravelContract() {
-		return idTravelContract;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdTravelContract(Long idTravelContract) {
-		this.idTravelContract = idTravelContract;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTerms() {
@@ -61,11 +64,11 @@ public class TravelContract implements Serializable{
 	}
 
 	public boolean isActive() {
-		return isActive;
+		return active;
 	}
 
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public OffsetDateTime getCreatedOn() {
@@ -90,8 +93,8 @@ public class TravelContract implements Serializable{
 		int result = 1;
 		result = prime * result + ((createdOn == null) ? 0 : createdOn.hashCode());
 		result = prime * result + ((idTravelAgency == null) ? 0 : idTravelAgency.hashCode());
-		result = prime * result + ((idTravelContract == null) ? 0 : idTravelContract.hashCode());
-		result = prime * result + (isActive ? 1231 : 1237);
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + (active ? 1231 : 1237);
 		result = prime * result + ((modifiedOn == null) ? 0 : modifiedOn.hashCode());
 		result = prime * result + ((terms == null) ? 0 : terms.hashCode());
 		return result;
@@ -116,12 +119,12 @@ public class TravelContract implements Serializable{
 				return false;
 		} else if (!idTravelAgency.equals(other.idTravelAgency))
 			return false;
-		if (idTravelContract == null) {
-			if (other.idTravelContract != null)
+		if (id == null) {
+			if (other.id!= null)
 				return false;
-		} else if (!idTravelContract.equals(other.idTravelContract))
+		} else if (!id.equals(other.id))
 			return false;
-		if (isActive != other.isActive)
+		if (active != other.active)
 			return false;
 		if (modifiedOn == null) {
 			if (other.modifiedOn != null)

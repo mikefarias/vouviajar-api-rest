@@ -6,65 +6,68 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TravelSugestion", schema="vouviajar")
+@Table(name="travel_sugestion", schema="vouviajar")
 public class TravelSugestion implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="ID_TRAVEL_SUGESTION")
-	private Long idTravelSugestion;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_travel_sugestion")
+	private Long id;
 	
 	@OneToOne
-	@JoinColumn(name="ID_PERSON")
+	@JoinColumn(name="id_person")
 	private Person idPerson;
 		
-	@Column(name="TITLE")
+	@Column(name="title")
 	private String title;
 	
-	@Column(name="DETAILS")
+	@Column(name="details")
 	private String details;
 	
-	@Column(name = "START_TIME")
-	private OffsetDateTime start_time;
+	@Column(name="start_time")
+	private OffsetDateTime startTime;
 	
-	@Column(name = "END_TIME")
-	private OffsetDateTime end_time;
+	@Column(name="end_time")
+	private OffsetDateTime endTime;
 	
-	@Column(name = "ORIGIN")
+	@Column(name="origin")
 	private String origin;
 	
-	@Column(name = "DESTINY")
+	@Column(name="destiny")
 	private String destiny;	
 	
-	@Column(name="VACANCIES")
+	@Column(name="vacancies")
 	private int vacancies;
 	
 	@OneToOne
-	@JoinColumn(name = "REGISTRATION_USER")
+	@JoinColumn(name="registration_user")
 	private User registrationUser;
 
-	@Column(name = "IS_ACTIVE")
-	private boolean isActive;
+	@Column(name="active")
+	private boolean active;
 
-	@Column(name = "CREATED_ON")
+	@Column(name="created_on")
 	private OffsetDateTime createdOn;
 	
-	@Column(name = "MODIFIED_ON")
+	@Column(name="modified_on")
 	private OffsetDateTime modifiedOn;
 
-	public Long getIdTravelSugestion() {
-		return idTravelSugestion;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdTravelSugestion(Long idTravelSugestion) {
-		this.idTravelSugestion = idTravelSugestion;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Person getIdPerson() {
@@ -91,20 +94,20 @@ public class TravelSugestion implements Serializable{
 		this.details = details;
 	}
 
-	public OffsetDateTime getStart_time() {
-		return start_time;
+	public OffsetDateTime getStartTime() {
+		return startTime;
 	}
 
-	public void setStart_time(OffsetDateTime start_time) {
-		this.start_time = start_time;
+	public void setStartTime(OffsetDateTime startTime) {
+		this.startTime = startTime;
 	}
 
-	public OffsetDateTime getEnd_time() {
-		return end_time;
+	public OffsetDateTime getEndTime() {
+		return endTime;
 	}
 
-	public void setEnd_time(OffsetDateTime end_time) {
-		this.end_time = end_time;
+	public void setEndTime(OffsetDateTime endTime) {
+		this.endTime = endTime;
 	}
 
 	public String getOrigin() {
@@ -139,12 +142,12 @@ public class TravelSugestion implements Serializable{
 		this.registrationUser = registrationUser;
 	}
 
-	public boolean isActive() {
-		return isActive;
+	public boolean active() {
+		return active;
 	}
 
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public OffsetDateTime getCreatedOn() {
@@ -165,8 +168,8 @@ public class TravelSugestion implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(createdOn, destiny, details, end_time, idPerson, idTravelSugestion, isActive, modifiedOn,
-				origin, registrationUser, start_time, title, vacancies);
+		return Objects.hash(createdOn, destiny, details, endTime, idPerson, id, active, modifiedOn,
+				origin, registrationUser, startTime, title, vacancies);
 	}
 
 	@Override
@@ -179,13 +182,12 @@ public class TravelSugestion implements Serializable{
 			return false;
 		TravelSugestion other = (TravelSugestion) obj;
 		return Objects.equals(createdOn, other.createdOn) && Objects.equals(destiny, other.destiny)
-				&& Objects.equals(details, other.details) && Objects.equals(end_time, other.end_time)
+				&& Objects.equals(details, other.details) && Objects.equals(endTime, other.endTime)
 				&& Objects.equals(idPerson, other.idPerson)
-				&& Objects.equals(idTravelSugestion, other.idTravelSugestion) && isActive == other.isActive
+				&& Objects.equals(id, other.id) && active == other.active
 				&& Objects.equals(modifiedOn, other.modifiedOn) && Objects.equals(origin, other.origin)
 				&& Objects.equals(registrationUser, other.registrationUser)
-				&& Objects.equals(start_time, other.start_time) && Objects.equals(title, other.title)
+				&& Objects.equals(startTime, other.startTime) && Objects.equals(title, other.title)
 				&& vacancies == other.vacancies;
 	}
-	
 }

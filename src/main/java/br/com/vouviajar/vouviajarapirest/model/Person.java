@@ -6,50 +6,53 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PERSON", schema = "vouviajar")
+@Table(name="person", schema="vouviajar")
 public class Person implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="ID_PERSON")
-	private Long idPerson;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_person")
+	private Long id;
 	
 	@OneToOne
-	@JoinColumn(name = "ID_USER")
+	@JoinColumn(name="id_user")
 	private User idUser;
 	
-	@Column(name = "NAME")
+	@Column(name="name")
 	private String name;
 	
-	@Column(name = "CPF")
+	@Column(name="cpf")
 	private String cpf;
 	
-	@Column(name = "PHONE_NUMBER")
+	@Column(name="phone_number")
 	private String phoneNumber;
 	
-	@Column(name = "CREATED_ON")
+	@Column(name="created_on")
 	private OffsetDateTime createdOn;
 	
-	@Column(name = "MODIFIED_ON")
+	@Column(name="modified_on")
 	private OffsetDateTime modifiedOn;
 
 	@OneToOne
-	@JoinColumn(name = "ADDRESS")
+	@JoinColumn(name="address")
 	private Address address;
 
-	public Long getIdPerson() {
-		return idPerson;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdPerson(Long idPerson) {
-		this.idPerson = idPerson;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setIdUser(User idUser) {
@@ -110,7 +113,7 @@ public class Person implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, cpf, createdOn, idPerson, idUser, modifiedOn, name, phoneNumber);
+		return Objects.hash(address, cpf, createdOn, id, idUser, modifiedOn, name, phoneNumber);
 	}
 
 	@Override
@@ -123,7 +126,7 @@ public class Person implements Serializable {
 			return false;
 		Person other = (Person) obj;
 		return Objects.equals(address, other.address) && Objects.equals(cpf, other.cpf)
-				&& Objects.equals(createdOn, other.createdOn) && Objects.equals(idPerson, other.idPerson)
+				&& Objects.equals(createdOn, other.createdOn) && Objects.equals(id, other.id)
 				&& Objects.equals(idUser, other.idUser) && Objects.equals(modifiedOn, other.modifiedOn)
 				&& Objects.equals(name, other.name) && Objects.equals(phoneNumber, other.phoneNumber);
 	}

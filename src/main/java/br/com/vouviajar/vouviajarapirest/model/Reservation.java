@@ -6,6 +6,8 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -13,42 +15,43 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="RESERVATION", schema="vouviajar")
+@Table(name="reservation", schema="vouviajar")
 public class Reservation implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="ID_RESERVATION")
-	private Long idReservation;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_reservation")
+	private Long id;
 	
 	@OneToOne
-	@JoinColumn(name="ID_TRAVEL_PACKAGE_CONTRACT")
+	@JoinColumn(name="id_travel_package_contract")
 	private TravelPackageContract idTravelPackageContract;
 	
 	@OneToOne
-	@JoinColumn(name="ID_PERSON")
+	@JoinColumn(name="id_person")
 	private Person idPerson;
 	
 	@OneToOne
-	@JoinColumn(name="ID_RESERVATION_STATUS")
+	@JoinColumn(name="id_reservation_status")
 	private ReservationStatus idReservationStatus;
 	
-	@Column(name = "IS_ACTIVE")
-	private boolean isActive;
+	@Column(name="active")
+	private boolean active;
 	
-	@Column(name = "CREATED_ON")
+	@Column(name="created_on")
 	private OffsetDateTime createdOn;
 	
-	@Column(name = "MODIFIED_ON")
+	@Column(name="modified_on")
 	private OffsetDateTime modifiedOn;
 
-	public Long getIdReservation() {
-		return idReservation;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdReservation(Long idReservation) {
-		this.idReservation = idReservation;
+	public void setId(Long id) {
+		this.id= id;
 	}
 
 	public TravelPackageContract getIdTravelPackageContract() {
@@ -76,11 +79,11 @@ public class Reservation implements Serializable{
 	}
 
 	public boolean isActive() {
-		return isActive;
+		return active;
 	}
 
 	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+		this.active = isActive;
 	}
 
 	public OffsetDateTime getCreatedOn() {
@@ -101,7 +104,7 @@ public class Reservation implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(createdOn, idPerson, idReservation, idReservationStatus, idTravelPackageContract, isActive,
+		return Objects.hash(createdOn, idPerson, id, idReservationStatus, idTravelPackageContract, active,
 				modifiedOn);
 	}
 
@@ -115,12 +118,9 @@ public class Reservation implements Serializable{
 			return false;
 		Reservation other = (Reservation) obj;
 		return Objects.equals(createdOn, other.createdOn) && Objects.equals(idPerson, other.idPerson)
-				&& Objects.equals(idReservation, other.idReservation)
+				&& Objects.equals(id, other.id)
 				&& Objects.equals(idReservationStatus, other.idReservationStatus)
-				&& Objects.equals(idTravelPackageContract, other.idTravelPackageContract) && isActive == other.isActive
+				&& Objects.equals(idTravelPackageContract, other.idTravelPackageContract) && active == other.active
 				&& Objects.equals(modifiedOn, other.modifiedOn);
 	}
-
-	
-
 }

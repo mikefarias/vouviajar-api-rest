@@ -6,43 +6,46 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CONTACT_TRAVEL_AGENCY", schema = "vouviajar")
+@Table(name="company_contact", schema="vouviajar")
 public class CompanyContact implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "ID_TRAVEL_AGENCY_CONTACT")
-	private Long idTravelAgencyContact;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_company_contact")
+	private Long id;
 	
-	@Column(name = "EMAIL")
+	@Column(name="email")
 	private String email; 
 	
-	@Column(name = "PHONE_NUMBER")
-	private String phone_numer;
+	@Column(name="phone_number")
+	private String phoneNumber;
 
-	@Column(name = "WHATSAPP" )
+	@Column(name="whatsapp" )
 	private String whatsapp;
 	
-	@Column(name = "IS_ACTIVE")
-	private boolean isActive;
+	@Column(name="active")
+	private boolean active;
 	
-	@Column(name = "CREATED_ON")
+	@Column(name="created_on")
 	private OffsetDateTime createdOn;
 	
-	@Column(name = "MODIFIED_ON")
+	@Column(name="modified_on")
 	private OffsetDateTime modifiedOn;
 
-	public Long getIdTravelAgencyContact() {
-		return idTravelAgencyContact;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdTravelAgencyContact(Long idTravelAgencyContact) {
-		this.idTravelAgencyContact = idTravelAgencyContact;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getEmail() {
@@ -53,12 +56,12 @@ public class CompanyContact implements Serializable{
 		this.email = email;
 	}
 
-	public String getPhone_numer() {
-		return phone_numer;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setPhone_numer(String phone_numer) {
-		this.phone_numer = phone_numer;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getWhatsapp() {
@@ -70,11 +73,11 @@ public class CompanyContact implements Serializable{
 	}
 
 	public boolean isActive() {
-		return isActive;
+		return active;
 	}
 
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public OffsetDateTime getCreatedOn() {
@@ -95,7 +98,7 @@ public class CompanyContact implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(createdOn, email, idTravelAgencyContact, isActive, modifiedOn, phone_numer, whatsapp);
+		return Objects.hash(createdOn, email, id, active, modifiedOn, phoneNumber, whatsapp);
 	}
 
 	@Override
@@ -108,8 +111,8 @@ public class CompanyContact implements Serializable{
 			return false;
 		CompanyContact other = (CompanyContact) obj;
 		return Objects.equals(createdOn, other.createdOn) && Objects.equals(email, other.email)
-				&& Objects.equals(idTravelAgencyContact, other.idTravelAgencyContact) && isActive == other.isActive
-				&& Objects.equals(modifiedOn, other.modifiedOn) && Objects.equals(phone_numer, other.phone_numer)
+				&& Objects.equals(id, other.id) && active == other.active
+				&& Objects.equals(modifiedOn, other.modifiedOn) && Objects.equals(phoneNumber, other.phoneNumber)
 				&& Objects.equals(whatsapp, other.whatsapp);
 	}
 	

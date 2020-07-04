@@ -17,41 +17,41 @@ import javax.persistence.Table;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "company", schema = "vouviajar")
+@Table(name="company", schema="vouviajar")
 public class Company implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "id_company")
+	@Column(name="id_company")
 	private Long id;
 	
 	@OneToOne
-	@JoinColumn(name = "id_user")
+	@JoinColumn(name="id_user")
 	private User idUser;
 	
-	@Column(name = "name")
+	@Column(name="name")
 	private String name; 
 	
-	@Column(name = "cnpj")
+	@Column(name="cnpj")
 	private String cnpj;
 	
 	@OneToOne
-	@JoinColumn(name = "id_address")
+	@JoinColumn(name="id_address")
 	private Address address;
 
 	@OneToOne
-	@JoinColumn(name = "id_company_contact")
+	@JoinColumn(name="id_company_contact")
 	private CompanyContact companyContact;
 	
-	@Column(name = "active")
+	@Column(name="active")
 	private boolean active;
 	
-	@Column(name = "created_on")
+	@Column(name="created_on")
 	private OffsetDateTime createdOn;
 	
-	@Column(name = "modified_on")
+	@Column(name="modified_on")
 	private OffsetDateTime modifiedOn;
 
 	public Long getId() {

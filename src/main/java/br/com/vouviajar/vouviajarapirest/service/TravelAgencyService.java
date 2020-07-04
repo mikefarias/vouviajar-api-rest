@@ -72,7 +72,7 @@ public class TravelAgencyService{
     private TravelAgency updateTravelAgency(TravelAgency travelAgency, TravelAgency travelAgency_db) {
     	
     	travelAgency_db.setCodeCadastur(travelAgency.getCodeCadastur());
-    	travelAgency_db.setIsPhysicalAgency(travelAgency.getIsPhysicalAgency());
+    	travelAgency_db.setPhysicalAgency(travelAgency.isPhysicalAgency());
     	travelAgency_db.setModifiedOn(OffsetDateTime.now());
     	
     	return travelAgencyRepository.save(travelAgency_db);

@@ -5,39 +5,42 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="RESERVATION_STATUS", schema="vouviajar")
+@Table(name="reservation_status", schema="vouviajar")
 public class ReservationStatus implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="ID_RESERVATION_STATUS")
-	private Long idReservationStatus;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_reservation_status")
+	private Long id;
 	
-	@Column(name="RESERVATION_STATUS")
-	private String reservationStatus;
+	@Column(name="status")
+	private String status;
 	
-	@Column(name="DESCRIPTION")
+	@Column(name="description")
 	private String description;
 
-	public Long getIdReservationStatus() {
-		return idReservationStatus;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdReservationStatus(Long idReservationStatus) {
-		this.idReservationStatus = idReservationStatus;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getReservationStatus() {
-		return reservationStatus;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setReservationStatus(String reservationStatus) {
-		this.reservationStatus = reservationStatus;
+	public void setReservationStatus(String status) {
+		this.status = status;
 	}
 
 	public String getDescription() {
@@ -50,7 +53,7 @@ public class ReservationStatus implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(description, idReservationStatus, reservationStatus);
+		return Objects.hash(description, id, status);
 	}
 
 	@Override
@@ -63,8 +66,7 @@ public class ReservationStatus implements Serializable{
 			return false;
 		ReservationStatus other = (ReservationStatus) obj;
 		return Objects.equals(description, other.description)
-				&& Objects.equals(idReservationStatus, other.idReservationStatus)
-				&& Objects.equals(reservationStatus, other.reservationStatus);
+				&& Objects.equals(id, other.id)
+				&& Objects.equals(status, other.status);
 	}
-
 }

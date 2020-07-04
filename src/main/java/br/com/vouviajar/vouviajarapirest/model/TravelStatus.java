@@ -5,39 +5,42 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TRAVEL_STATUS", schema="vouviajar")
+@Table(name="travel_status", schema="vouviajar")
 public class TravelStatus implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="ID_TRAVEL_STATUS")
-	private Long idTravelStatus;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_travel_status")
+	private Long id;
 	
-	@Column(name="TRAVEL_STATUS")
-	private String travelStatus;
+	@Column(name="status")
+	private String status;
 	
-	@Column(name="DESCRIPTION")
+	@Column(name="description")
 	private String description;
 
-	public Long getIdTravelStatus() {
-		return idTravelStatus;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdTravelStatus(Long idTravelStatus) {
-		this.idTravelStatus = idTravelStatus;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getTravelStatus() {
-		return travelStatus;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setTravelStatus(String travelStatus) {
-		this.travelStatus = travelStatus;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getDescription() {
@@ -50,7 +53,7 @@ public class TravelStatus implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(description, idTravelStatus, travelStatus);
+		return Objects.hash(description, id, status);
 	}
 
 	@Override
@@ -62,8 +65,7 @@ public class TravelStatus implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		TravelStatus other = (TravelStatus) obj;
-		return Objects.equals(description, other.description) && Objects.equals(idTravelStatus, other.idTravelStatus)
-				&& Objects.equals(travelStatus, other.travelStatus);
+		return Objects.equals(description, other.description) && Objects.equals(id, other.id)
+				&& Objects.equals(status, other.status);
 	}	
-
 }

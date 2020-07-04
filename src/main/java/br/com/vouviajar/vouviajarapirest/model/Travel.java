@@ -14,24 +14,24 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "travel", schema = "vouviajar")
+@Table(name="travel", schema="vouviajar")
 public class Travel implements Serializable{
 	
 	public Travel() {
 		
 	}
 	
-	public Travel(String title, String details, OffsetDateTime start_time, OffsetDateTime end_time, String origin,
-			String destiny, int vacancies, int vacancies_available, TravelType idTravelType,
+	public Travel(String title, String details, OffsetDateTime startTime, OffsetDateTime endTime, String origin,
+			String destiny, int vacancies, int vacanciesAvailable, TravelType idTravelType,
 			TravelStatus idTravelStatus, TravelPackage idTravelPackage) {
 		this.title = title;
 		this.details = details;
-		this.start_time = start_time;
-		this.end_time = end_time;
+		this.startTime = startTime;
+		this.endTime = endTime;
 		this.origin = origin;
 		this.destiny = destiny;
 		this.vacancies = vacancies;
-		this.vacancies_available = vacancies_available;
+		this.vacanciesAvailable = vacanciesAvailable;
 		this.idTravelType = idTravelType;
 		this.idTravelStatus = idTravelStatus;
 		this.idTravelPackage = idTravelPackage;
@@ -50,16 +50,16 @@ public class Travel implements Serializable{
 	@Column(name="details")
 	private String details;
 	
-	@Column(name = "start_time")
+	@Column(name="start_time")
 	private OffsetDateTime startTime;
 	
-	@Column(name = "end_time")
+	@Column(name="end_time")
 	private OffsetDateTime endTime;
 	
-	@Column(name = "origin")
+	@Column(name="origin")
 	private String origin;
 	
-	@Column(name = "destiny")
+	@Column(name="destiny")
 	private String destiny;	
 	
 	@Column(name="vacancies")
@@ -81,20 +81,20 @@ public class Travel implements Serializable{
 	private TravelPackage idTravelPackage;
 
 	@OneToOne
-	@JoinColumn(name = "registration_user")
+	@JoinColumn(name="registration_user")
 	private User registrationUser;
 
 	@OneToOne
-	@JoinColumn(name = "id_travel_agency")
+	@JoinColumn(name="id_travel_agency")
 	private TravelAgency idTravelAgency;
 
-	@Column(name = "active")
+	@Column(name="active")
 	private boolean active;
 
-	@Column(name = "created_on")
+	@Column(name="created_on")
 	private OffsetDateTime createdOn;
 	
-	@Column(name = "modified_on")
+	@Column(name="modified_on")
 	private OffsetDateTime modifiedOn;
 
 	public Long getId() {

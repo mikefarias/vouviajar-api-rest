@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user", schema = "vouviajar")
+@Table(name="user", schema="vouviajar")
 public class User {
 	
 	public User() {
@@ -37,34 +37,34 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_user")
+	@Column(name="id_user")
 	private Long id;
 	
-	@Column(name = "email")
+	@Column(name="email")
 	private String email;
 	
-	@Column(name = "password")
+	@Column(name="password")
 	private String password;
 	
-	@Column(name = "name")
+	@Column(name="name")
 	private String name;
 	
-	@Column(name = "active")
+	@Column(name="active")
 	private boolean active;
 	
-	@Column(name = "enabled")
+	@Column(name="enabled")
 	private boolean enabled;
 	
-	@Column(name = "staff")
+	@Column(name="staff")
 	private boolean staff;
 	
-	@Column(name = "date_joined")
+	@Column(name="date_joined")
 	private OffsetDateTime dateJoined;
 	
-	@Column(name = "created_on")
+	@Column(name="created_on")
 	private OffsetDateTime createdOn;
 	
-	@Column(name = "modified_on")
+	@Column(name="modified_on")
 	private OffsetDateTime modifiedOn;
 
 	public Long getId() {

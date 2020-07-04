@@ -8,34 +8,34 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TRAVEL_AGENCY", schema = "vouviajar")
+@Table(name="travel_agency", schema="vouviajar")
 public class TravelAgency extends Company{
 
 	public TravelAgency(){
 		
 	}
 	
-	public TravelAgency(String codeCadastur, boolean isPhysicalAgency) {
+	public TravelAgency(String codeCadastur, boolean physicalAgency) {
 		this.codeCadastur = codeCadastur;
-		this.isPhysicalAgency = isPhysicalAgency;
+		this.physicalAgency = physicalAgency;
 	}
 		
 	private static final long serialVersionUID = 1L;
 	
 
-	@Column(name = "CODE_CADASTUR")
+	@Column(name="code_cadastur")
 	private String codeCadastur;
 		
-	@Column(name = "IS_PHYSICAL_AGENCY")
-	private boolean isPhysicalAgency;
+	@Column(name="physical_agency")
+	private boolean physicalAgency;
 	
-	@Column(name = "IS_ACTIVE")
-	private boolean isActive;
+	@Column(name="active")
+	private boolean active;
 	
-	@Column(name = "CREATED_ON")
+	@Column(name="created_on")
 	private OffsetDateTime createdOn;
 	
-	@Column(name = "MODIFIED_ON")
+	@Column(name="modified_on")
 	private OffsetDateTime modifiedOn;
 
 	public String getCodeCadastur() {
@@ -46,20 +46,20 @@ public class TravelAgency extends Company{
 		this.codeCadastur = codeCadastur;
 	}
 
-	public boolean getIsPhysicalAgency() {
-		return isPhysicalAgency;
+	public boolean isPhysicalAgency() {
+		return physicalAgency;
 	}
 
-	public void setIsPhysicalAgency(boolean isPhysicalAgency) {
-		this.isPhysicalAgency = isPhysicalAgency;
+	public void setPhysicalAgency(boolean physicalAgency) {
+		this.physicalAgency = physicalAgency;
 	}
 
 	public boolean isActive() {
-		return isActive;
+		return active;
 	}
 
-	public void setIsActive(boolean isActive) {
-		this.isActive = isActive;
+	public void setActive(boolean isActive) {
+		this.active = isActive;
 	}
 
 	public OffsetDateTime getCreatedOn() {
@@ -80,7 +80,7 @@ public class TravelAgency extends Company{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(codeCadastur, createdOn, isActive, isPhysicalAgency,
+		return Objects.hash(codeCadastur, createdOn, active, physicalAgency,
 				modifiedOn);
 	}
 
@@ -94,8 +94,8 @@ public class TravelAgency extends Company{
 			return false;
 		TravelAgency other = (TravelAgency) obj;
 		return Objects.equals(codeCadastur, other.codeCadastur) && Objects.equals(createdOn, other.createdOn)
-				&& isActive == other.isActive
-				&& Objects.equals(isPhysicalAgency, other.isPhysicalAgency)
+				&& active == other.active
+				&& Objects.equals(physicalAgency, other.physicalAgency)
 				&& Objects.equals(modifiedOn, other.modifiedOn);
 	}
 	

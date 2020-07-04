@@ -15,13 +15,13 @@ public class TravelDTO{
 	public TravelDTO() {
 	}
 
-	public TravelDTO(String title, String details, OffsetDateTime start_time, OffsetDateTime end_time, String origin,
+	public TravelDTO(String title, String details, OffsetDateTime startTime, OffsetDateTime endTime, String origin,
 			String destiny, int vacancies, int vacancies_available, TravelType idTravelType,
 			TravelStatus idTravelStatus, TravelPackage idTravelPackage) {
 		this.title = title;
 		this.details = details;
-		this.start_time = start_time;
-		this.end_time = end_time;
+		this.startTime = startTime;
+		this.endTime = endTime;
 		this.origin = origin;
 		this.destiny = destiny;
 		this.vacancies = vacancies;
@@ -37,9 +37,9 @@ public class TravelDTO{
 	
 	private String details;
 	
-	private OffsetDateTime start_time;
+	private OffsetDateTime startTime;
 	
-	private OffsetDateTime end_time;
+	private OffsetDateTime endTime;
 	
 	private String origin;
 	
@@ -71,20 +71,20 @@ public class TravelDTO{
 		this.details = details;
 	}
 
-	public OffsetDateTime getStart_time() {
-		return start_time;
+	public OffsetDateTime getStartTime() {
+		return startTime;
 	}
 
-	public void setStart_time(OffsetDateTime start_time) {
-		this.start_time = start_time;
+	public void setStartTime(OffsetDateTime startTime) {
+		this.startTime = startTime;
 	}
 
-	public OffsetDateTime getEnd_time() {
-		return end_time;
+	public OffsetDateTime getEndTime() {
+		return endTime;
 	}
 
-	public void setEnd_time(OffsetDateTime end_time) {
-		this.end_time = end_time;
+	public void setEndTime(OffsetDateTime endTime) {
+		this.endTime = endTime;
 	}
 
 	public String getOrigin() {
@@ -144,15 +144,15 @@ public class TravelDTO{
 	}
 
 	public static TravelDTO toDTO(Travel travel){
-        return new TravelDTO(travel.getTitle(), travel.getDetails(), travel.getStart_time(), travel.getEnd_time(), 
-        		travel.getOrigin(), travel.getDestiny(), travel.getVacancies(), travel.getVacancies_available(), 
+        return new TravelDTO(travel.getTitle(), travel.getDetails(), travel.getStartTime(), travel.getEndTime(), 
+        		travel.getOrigin(), travel.getDestiny(), travel.getVacancies(), travel.getVacanciesAvailable(), 
         		travel.getIdTravelType(), travel.getIdTravelStatus(), travel.getIdTravelPackage());
     }
 	
 	public static TravelDTO toDTO(Optional<Travel> travelOptional){
 		Travel travel = travelOptional.get();
-        return new TravelDTO(travel.getTitle(), travel.getDetails(), travel.getStart_time(), travel.getEnd_time(), 
-        		travel.getOrigin(), travel.getDestiny(), travel.getVacancies(), travel.getVacancies_available(), 
+        return new TravelDTO(travel.getTitle(), travel.getDetails(), travel.getStartTime(), travel.getEndTime(), 
+        		travel.getOrigin(), travel.getDestiny(), travel.getVacancies(), travel.getVacanciesAvailable(), 
         		travel.getIdTravelType(), travel.getIdTravelStatus(), travel.getIdTravelPackage());
     }
 
@@ -167,7 +167,7 @@ public class TravelDTO{
     }
 
 	public Travel toTravel(){
-        return new Travel(getTitle(), getDetails(), getStart_time(), getEnd_time(), 
+        return new Travel(getTitle(), getDetails(), getStartTime(), getEndTime(), 
         		getOrigin(), getDestiny(), getVacancies(), getVacancies_available(), 
         		getIdTravelType(), getIdTravelStatus(), getIdTravelPackage());
     }
