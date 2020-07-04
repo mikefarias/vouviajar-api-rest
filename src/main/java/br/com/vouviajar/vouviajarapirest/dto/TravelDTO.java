@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import br.com.vouviajar.vouviajarapirest.models.Travel;
-import br.com.vouviajar.vouviajarapirest.models.TravelPackage;
-import br.com.vouviajar.vouviajarapirest.models.TravelStatus;
-import br.com.vouviajar.vouviajarapirest.models.TravelType;
+import br.com.vouviajar.vouviajarapirest.model.Travel;
+import br.com.vouviajar.vouviajarapirest.model.TravelPackage;
+import br.com.vouviajar.vouviajarapirest.model.TravelStatus;
+import br.com.vouviajar.vouviajarapirest.model.TravelType;
 
 public class TravelDTO{
    

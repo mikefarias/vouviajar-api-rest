@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.vouviajar.vouviajarapirest.exception.UninformedCredentialsException;
 import br.com.vouviajar.vouviajarapirest.exception.UserAlreadyRegisteredException;
 import br.com.vouviajar.vouviajarapirest.exception.UserNotFoundException;
-import br.com.vouviajar.vouviajarapirest.models.User;
+import br.com.vouviajar.vouviajarapirest.model.User;
 import br.com.vouviajar.vouviajarapirest.repository.UserRepository;
 
 @Service

@@ -1,4 +1,4 @@
-package br.com.vouviajar.vouviajarapirest.models;
+package br.com.vouviajar.vouviajarapirest.model;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CONTACT_TRAVEL_AGENCY", schema = "vouviajar")
-public class TravelAgencyContact implements Serializable{
+public class CompanyContact implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -106,7 +106,7 @@ public class TravelAgencyContact implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TravelAgencyContact other = (TravelAgencyContact) obj;
+		CompanyContact other = (CompanyContact) obj;
 		return Objects.equals(createdOn, other.createdOn) && Objects.equals(email, other.email)
 				&& Objects.equals(idTravelAgencyContact, other.idTravelAgencyContact) && isActive == other.isActive
 				&& Objects.equals(modifiedOn, other.modifiedOn) && Objects.equals(phone_numer, other.phone_numer)

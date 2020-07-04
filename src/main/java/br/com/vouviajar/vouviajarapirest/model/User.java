@@ -1,4 +1,4 @@
-package br.com.vouviajar.vouviajarapirest.models;
+package br.com.vouviajar.vouviajarapirest.model;
 
 import java.time.OffsetDateTime;
 import java.util.Objects;
@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USER", schema = "vouviajar")
+@Table(name = "user", schema = "vouviajar")
 public class User {
 	
 	public User() {
@@ -22,14 +22,14 @@ public class User {
 		this.password = password;
 	}
 
-	public User(String email, String password, String name, boolean isActive, boolean isEnable, boolean isStaff,
+	public User(String email, String password, String name, boolean active, boolean enabled, boolean staff,
 			OffsetDateTime dateJoined, OffsetDateTime createdOn, OffsetDateTime modifiedOn) {
 		this.email = email;
 		this.password = password;
 		this.name = name;
-		this.isActive = isActive;
-		this.isEnable = isEnable;
-		this.isStaff = isStaff;
+		this.active = active;
+		this.enabled = enabled;
+		this.staff = staff;
 		this.dateJoined = dateJoined;
 		this.createdOn = createdOn;
 		this.modifiedOn = modifiedOn;
@@ -37,34 +37,34 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_USER")
+	@Column(name = "id_user")
 	private Long id;
 	
-	@Column(name = "EMAIL")
+	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "PASSWORD")
+	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "NAME")
+	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "IS_ACTIVE")
-	private boolean isActive;
+	@Column(name = "active")
+	private boolean active;
 	
-	@Column(name = "IS_ENABLED")
-	private boolean isEnable;
+	@Column(name = "enabled")
+	private boolean enabled;
 	
-	@Column(name = "IS_STAFF")
-	private boolean isStaff;
+	@Column(name = "staff")
+	private boolean staff;
 	
-	@Column(name = "DATE_JOINED")
+	@Column(name = "date_joined")
 	private OffsetDateTime dateJoined;
 	
-	@Column(name = "CREATED_ON")
+	@Column(name = "created_on")
 	private OffsetDateTime createdOn;
 	
-	@Column(name = "MODIFIED_ON")
+	@Column(name = "modified_on")
 	private OffsetDateTime modifiedOn;
 
 	public Long getId() {
@@ -100,27 +100,27 @@ public class User {
 	}
 
 	public boolean isActive() {
-		return isActive;
+		return active;
 	}
 
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
-	public boolean isEnable() {
-		return isEnable;
+	public boolean isEnabled() {
+		return enabled;
 	}
 
-	public void setEnable(boolean isEnable) {
-		this.isEnable = isEnable;
+	public void setEnable(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	public boolean isStaff() {
-		return isStaff;
+		return staff;
 	}
 
-	public void setStaff(boolean isStaff) {
-		this.isStaff = isStaff;
+	public void setStaff(boolean staff) {
+		this.staff = staff;
 	}
 
 	public OffsetDateTime getDateJoined() {
@@ -154,7 +154,7 @@ public class User {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(createdOn, dateJoined, email, id, isActive, isEnable, isStaff, modifiedOn, name, password);
+		return Objects.hash(createdOn, dateJoined, email, id, active, enabled, staff, modifiedOn, name, password);
 	}
 
 	@Override
@@ -167,8 +167,8 @@ public class User {
 			return false;
 		User other = (User) obj;
 		return Objects.equals(createdOn, other.createdOn) && Objects.equals(dateJoined, other.dateJoined)
-				&& Objects.equals(email, other.email) && Objects.equals(id, other.id) && isActive == other.isActive
-				&& isEnable == other.isEnable && isStaff == other.isStaff
+				&& Objects.equals(email, other.email) && Objects.equals(id, other.id) && active == other.active
+				&& enabled == other.enabled && staff == other.staff
 				&& Objects.equals(modifiedOn, other.modifiedOn) && Objects.equals(name, other.name)
 				&& Objects.equals(password, other.password);
 	}

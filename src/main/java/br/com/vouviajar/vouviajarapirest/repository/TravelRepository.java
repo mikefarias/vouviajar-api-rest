@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.vouviajar.vouviajarapirest.models.Travel;
+import br.com.vouviajar.vouviajarapirest.model.Travel;
 
 
 @Repository

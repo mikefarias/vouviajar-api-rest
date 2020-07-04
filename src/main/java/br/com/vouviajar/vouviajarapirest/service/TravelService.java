@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.vouviajar.vouviajarapirest.exception.InvalidDataException;
 import br.com.vouviajar.vouviajarapirest.exception.NotFoundException;
-import br.com.vouviajar.vouviajarapirest.models.Travel;
+import br.com.vouviajar.vouviajarapirest.model.Travel;
 import br.com.vouviajar.vouviajarapirest.repository.TravelRepository;
 
 @Service

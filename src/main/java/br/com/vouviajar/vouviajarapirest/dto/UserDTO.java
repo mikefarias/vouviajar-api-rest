@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import br.com.vouviajar.vouviajarapirest.models.User;
+import br.com.vouviajar.vouviajarapirest.model.User;
 
 public class UserDTO{
    

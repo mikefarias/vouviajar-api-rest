@@ -1,4 +1,4 @@
-package br.com.vouviajar.vouviajarapirest.models;
+package br.com.vouviajar.vouviajarapirest.model;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TRAVEL", schema = "vouviajar")
+@Table(name = "travel", schema = "vouviajar")
 public class Travel implements Serializable{
 	
 	public Travel() {
@@ -41,68 +41,68 @@ public class Travel implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID_TRAVEL")
-	private Long idTravel; 
+	@Column(name="id_travel")
+	private Long id; 
 	
-	@Column(name="TITLE")
+	@Column(name="title")
 	private String title;
 	
-	@Column(name="DETAILS")
+	@Column(name="details")
 	private String details;
 	
-	@Column(name = "START_TIME")
-	private OffsetDateTime start_time;
+	@Column(name = "start_time")
+	private OffsetDateTime startTime;
 	
-	@Column(name = "END_TIME")
-	private OffsetDateTime end_time;
+	@Column(name = "end_time")
+	private OffsetDateTime endTime;
 	
-	@Column(name = "ORIGIN")
+	@Column(name = "origin")
 	private String origin;
 	
-	@Column(name = "DESTINY")
+	@Column(name = "destiny")
 	private String destiny;	
 	
-	@Column(name="VACANCIES")
+	@Column(name="vacancies")
 	private int vacancies;
 
-	@Column(name="VACANCIES_AVAILABLE")
-	private int vacancies_available;
+	@Column(name="vacancies_available")
+	private int vacanciesAvailable;
 				
 	@OneToOne
-	@JoinColumn(name="ID_TRAVEL_TYPE")
+	@JoinColumn(name="id_travel_type")
 	private TravelType idTravelType; 
 	
 	@OneToOne
-	@JoinColumn(name="ID_TRAVEL_STATUS")
+	@JoinColumn(name="id_travel_status")
 	private TravelStatus idTravelStatus;
 	
 	@OneToOne
-	@JoinColumn(name="ID_TRAVEL_PACKAGE")
+	@JoinColumn(name="id_travel_package")
 	private TravelPackage idTravelPackage;
 
 	@OneToOne
-	@JoinColumn(name = "REGISTRATION_USER")
+	@JoinColumn(name = "registration_user")
 	private User registrationUser;
 
 	@OneToOne
-	@JoinColumn(name = "ID_TRAVEL_AGENCY")
+	@JoinColumn(name = "id_travel_agency")
 	private TravelAgency idTravelAgency;
 
-	@Column(name = "IS_ACTIVE")
-	private boolean isActive;
+	@Column(name = "active")
+	private boolean active;
 
-	@Column(name = "CREATED_ON")
+	@Column(name = "created_on")
 	private OffsetDateTime createdOn;
 	
-	@Column(name = "MODIFIED_ON")
+	@Column(name = "modified_on")
 	private OffsetDateTime modifiedOn;
 
-	public Long getIdTravel() {
-		return idTravel;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdTravel(Long idTravel) {
-		this.idTravel = idTravel;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -121,20 +121,20 @@ public class Travel implements Serializable{
 		this.details = details;
 	}
 
-	public OffsetDateTime getStart_time() {
-		return start_time;
+	public OffsetDateTime getStartTime() {
+		return startTime;
 	}
 
-	public void setStart_time(OffsetDateTime start_time) {
-		this.start_time = start_time;
+	public void setStartTime(OffsetDateTime startTime) {
+		this.startTime = startTime;
 	}
 
-	public OffsetDateTime getEnd_time() {
-		return end_time;
+	public OffsetDateTime getEndTime() {
+		return endTime;
 	}
 
-	public void setEnd_time(OffsetDateTime end_time) {
-		this.end_time = end_time;
+	public void setEndTime(OffsetDateTime endTime) {
+		this.endTime = endTime;
 	}
 
 	public String getOrigin() {
@@ -161,12 +161,12 @@ public class Travel implements Serializable{
 		this.vacancies = vacancies;
 	}
 
-	public int getVacancies_available() {
-		return vacancies_available;
+	public int getVacanciesAvailable() {
+		return vacanciesAvailable;
 	}
 
-	public void setVacancies_available(int vacancies_available) {
-		this.vacancies_available = vacancies_available;
+	public void setVacanciesAvailable(int vacanciesAvailable) {
+		this.vacanciesAvailable = vacanciesAvailable;
 	}
 
 	public TravelType getIdTravelType() {
@@ -211,15 +211,11 @@ public class Travel implements Serializable{
 
 
 	public boolean isActive() {
-		return isActive;
+		return active;
 	}
 
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public OffsetDateTime getCreatedOn() {
@@ -240,9 +236,9 @@ public class Travel implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(createdOn, destiny, details, end_time, idTravelAgency, idTravelPackage, idTravelStatus,
-				idTravelType, idTravel, isActive, modifiedOn, origin, registrationUser, start_time, title, vacancies,
-				vacancies_available);
+		return Objects.hash(createdOn, destiny, details, endTime, idTravelAgency, idTravelPackage, idTravelStatus,
+				idTravelType, id, active, modifiedOn, origin, registrationUser, startTime, title, vacancies,
+				vacanciesAvailable);
 	}
 
 	@Override
@@ -255,15 +251,15 @@ public class Travel implements Serializable{
 			return false;
 		Travel other = (Travel) obj;
 		return Objects.equals(createdOn, other.createdOn) && Objects.equals(destiny, other.destiny)
-				&& Objects.equals(details, other.details) && Objects.equals(end_time, other.end_time)
+				&& Objects.equals(details, other.details) && Objects.equals(endTime, other.endTime)
 				&& Objects.equals(idTravelAgency, other.idTravelAgency)
 				&& Objects.equals(idTravelPackage, other.idTravelPackage)
 				&& Objects.equals(idTravelStatus, other.idTravelStatus)
-				&& Objects.equals(idTravelType, other.idTravelType) && Objects.equals(idTravel, other.idTravel)
-				&& isActive == other.isActive && Objects.equals(modifiedOn, other.modifiedOn)
+				&& Objects.equals(idTravelType, other.idTravelType) && Objects.equals(id, other.id)
+				&& active == other.active && Objects.equals(modifiedOn, other.modifiedOn)
 				&& Objects.equals(origin, other.origin) && Objects.equals(registrationUser, other.registrationUser)
-				&& Objects.equals(start_time, other.start_time) && Objects.equals(title, other.title)
-				&& vacancies == other.vacancies && vacancies_available == other.vacancies_available;
+				&& Objects.equals(startTime, other.startTime) && Objects.equals(title, other.title)
+				&& vacancies == other.vacancies && vacanciesAvailable == other.vacanciesAvailable;
 	}
 		
 

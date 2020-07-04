@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.vouviajar.vouviajarapirest.dto.UserDTO;
-import br.com.vouviajar.vouviajarapirest.models.User;
+import br.com.vouviajar.vouviajarapirest.model.User;
 import br.com.vouviajar.vouviajarapirest.service.UserService;
 
 @RestController

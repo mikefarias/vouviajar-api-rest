@@ -1,4 +1,4 @@
-package br.com.vouviajar.vouviajarapirest.models;
+package br.com.vouviajar.vouviajarapirest.model;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
@@ -17,49 +17,49 @@ import javax.persistence.Table;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "COMPANY", schema = "vouviajar")
+@Table(name = "company", schema = "vouviajar")
 public class Company implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "ID_COMPANY")
-	private Long idCompany;
+	@Column(name = "id_company")
+	private Long id;
 	
 	@OneToOne
-	@JoinColumn(name = "ID_USER")
+	@JoinColumn(name = "id_user")
 	private User idUser;
 	
-	@Column(name = "NAME")
+	@Column(name = "name")
 	private String name; 
 	
-	@Column(name = "CNPJ")
+	@Column(name = "cnpj")
 	private String cnpj;
 	
 	@OneToOne
-	@JoinColumn(name = "ID_ADDRESS")
+	@JoinColumn(name = "id_address")
 	private Address address;
 
 	@OneToOne
-	@JoinColumn(name = "ID_CONTACT_TRAVEL_AGENCY")
-	private TravelAgencyContact contactTravelAgency;
+	@JoinColumn(name = "id_company_contact")
+	private CompanyContact companyContact;
 	
-	@Column(name = "IS_ACTIVE")
-	private boolean isActive;
+	@Column(name = "active")
+	private boolean active;
 	
-	@Column(name = "CREATED_ON")
+	@Column(name = "created_on")
 	private OffsetDateTime createdOn;
 	
-	@Column(name = "MODIFIED_ON")
+	@Column(name = "modified_on")
 	private OffsetDateTime modifiedOn;
 
-	public Long getIdCompany() {
-		return idCompany;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdCompany(Long idCompany) {
-		this.idCompany = idCompany;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	public void setIdUser(User idUser) {
@@ -95,20 +95,20 @@ public class Company implements Serializable{
 	}
 
 
-	public TravelAgencyContact getContactTravelAgency() {
-		return contactTravelAgency;
+	public CompanyContact getCompanyContact() {
+		return companyContact;
 	}
 
-	public void setContactTravelAgency(TravelAgencyContact contactTravelAgency) {
-		this.contactTravelAgency = contactTravelAgency;
+	public void setCompanyContact(CompanyContact companyContact) {
+		this.companyContact = companyContact;
 	}
 
 	public boolean isActive() {
-		return isActive;
+		return active;
 	}
 
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public OffsetDateTime getCreatedOn() {
@@ -131,7 +131,7 @@ public class Company implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Objects.hash(address, cnpj, contactTravelAgency, createdOn, idCompany, idUser, isActive,
+		result = prime * result + Objects.hash(address, cnpj, companyContact, createdOn, id, idUser, active,
 				modifiedOn, name);
 		return result;
 	}
@@ -146,9 +146,9 @@ public class Company implements Serializable{
 			return false;
 		Company other = (Company) obj;
 		return Objects.equals(address, other.address) && Objects.equals(cnpj, other.cnpj)
-				&& Objects.equals(contactTravelAgency, other.contactTravelAgency)
-				&& Objects.equals(createdOn, other.createdOn) && Objects.equals(idCompany, other.idCompany)
-				&& Objects.equals(idUser, other.idUser) && isActive == other.isActive
+				&& Objects.equals(companyContact, other.companyContact)
+				&& Objects.equals(createdOn, other.createdOn) && Objects.equals(id, other.id)
+				&& Objects.equals(idUser, other.idUser) && active == other.active
 				&& Objects.equals(modifiedOn, other.modifiedOn) && Objects.equals(name, other.name);
 	}
 
