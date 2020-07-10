@@ -18,6 +18,15 @@ import javax.persistence.Table;
 @Table(name="travel_package", schema="vouviajar")
 public class TravelPackage implements Serializable{
 	
+	public TravelPackage() {
+		
+	}
+	
+	public TravelPackage(String name, double investiment) {
+		this.name = name;
+		this.investiment = investiment;
+	}
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -36,7 +45,7 @@ public class TravelPackage implements Serializable{
 	private Travel idTravel;
 	
 	@OneToOne
-	@JoinColumn(name="registration_uUser")
+	@JoinColumn(name="registration_user")
 	private User registrationUser;
 
 	@Column(name="active")
