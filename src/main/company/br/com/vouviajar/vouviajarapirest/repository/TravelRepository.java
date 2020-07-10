@@ -11,6 +11,6 @@ import br.com.vouviajar.vouviajarapirest.model.Travel;
 @Repository
 public interface TravelRepository extends JpaRepository<Travel, Long> {
 
-    Optional<Travel> findById(Long idTravel);
+    Optional<Travel> findById(Long id);
     
 } 

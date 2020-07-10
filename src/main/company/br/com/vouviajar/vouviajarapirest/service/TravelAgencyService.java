@@ -7,10 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.vouviajar.vouviajarapirest.exception.DataAlreadyExistsException;
 import br.com.vouviajar.vouviajarapirest.exception.InvalidDataException;
-import br.com.vouviajar.vouviajarapirest.exception.TravelAgencyAlreadyRegisteredException;
-import br.com.vouviajar.vouviajarapirest.model.TravelAgency;
 import br.com.vouviajar.vouviajarapirest.exception.NotFoundException;
+import br.com.vouviajar.vouviajarapirest.model.TravelAgency;
 import br.com.vouviajar.vouviajarapirest.repository.TravelAgencyRepository;
 
 @Service
@@ -41,7 +41,7 @@ public class TravelAgencyService{
     	  
     	
         if(travelAgencyRepository.findByCodeCadastur(travelAgency.getCodeCadastur()) != null) {
-        	throw new TravelAgencyAlreadyRegisteredException();
+        	throw new DataAlreadyExistsException("Travel Agency already exists");
         }            
         
         return createTravelAgency(travelAgency);

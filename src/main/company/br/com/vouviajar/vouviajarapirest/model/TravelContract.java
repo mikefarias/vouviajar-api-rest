@@ -16,6 +16,14 @@ import javax.persistence.Table;
 @Table(name="travel_contract", schema="vouviajar")
 public class TravelContract implements Serializable{
 
+	public TravelContract(){
+		
+	}
+	
+	public TravelContract(String terms) {
+		this.terms = terms;
+	}
+	
 	private final static long serialVersionUID = 1L;
 	
 	@Id

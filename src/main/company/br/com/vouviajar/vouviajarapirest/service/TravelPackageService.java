@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.vouviajar.vouviajarapirest.exception.InvalidDataException;
 import br.com.vouviajar.vouviajarapirest.exception.NotFoundException;
-import br.com.vouviajar.vouviajarapirest.exception.TravelpackageAlreadyRegisteredException;
+import br.com.vouviajar.vouviajarapirest.exception.DataAlreadyExistsException;
 import br.com.vouviajar.vouviajarapirest.model.TravelPackage;
 import br.com.vouviajar.vouviajarapirest.repository.TravelPackageRepository;
 
@@ -41,7 +41,7 @@ public class TravelPackageService{
     	}
 		  
     	if(travelPackageRepository.findByName(travelPackage.getName()) != null) { 
-    		throw new TravelpackageAlreadyRegisteredException(); 
+    		throw new DataAlreadyExistsException("Travel Package already exists"); 
     	}
 		        
         return createTravelPackage(travelPackage);
