@@ -17,6 +17,21 @@ import javax.persistence.Table;
 @Table(name="travel_sugestion", schema="vouviajar")
 public class TravelSugestion implements Serializable{
 
+	public TravelSugestion() {
+		
+	}
+	
+	public TravelSugestion(String title, String details, OffsetDateTime startTime, OffsetDateTime endTime, String origin,
+			String destiny, int vacancies ) {
+		this.title = title;
+		this.details = details;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.origin = origin;
+		this.destiny = destiny;
+		this.vacancies = vacancies;
+	}
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id

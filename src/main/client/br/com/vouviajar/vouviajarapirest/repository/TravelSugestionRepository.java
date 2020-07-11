@@ -5,11 +5,11 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.vouviajar.vouviajarapirest.model.Reservation;
+import br.com.vouviajar.vouviajarapirest.model.TravelSugestion;
 
 @Repository
-public interface ReservationRepository extends JpaRepository<Reservation, Long> {
+public interface TravelSugestionRepository extends JpaRepository<TravelSugestion, Long> {
 
-    Optional<Reservation> findById(Long id);
+    Optional<TravelSugestion> findById(Long id);
         
 } 
