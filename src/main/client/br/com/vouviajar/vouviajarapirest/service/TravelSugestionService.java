@@ -62,7 +62,7 @@ public class TravelSugestionService{
     	travelSugestion_db.setOrigin(travelSugestion.getOrigin());
     	travelSugestion_db.setDestiny(travelSugestion.getDestiny());
     	travelSugestion_db.setStartTime(travelSugestion.getStartTime());
-    	travelSugestion_db.setEndTime(travelSugestion.getEndTime());
+    	travelSugestion_db.setEndTime(travelSgestion.getEndTime());
     	travelSugestion_db.setModifiedOn(OffsetDateTime.now());
     	
     	return travelSugestionRepository.save(travelSugestion_db);
