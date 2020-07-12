@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import br.com.vouviajar.vouviajarapirest.exception.NotFoundException;
 import br.com.vouviajar.vouviajarapirest.model.Reservation;
 import br.com.vouviajar.vouviajarapirest.repository.ReservationRepository;
-import br.com.vouviajar.vouviajarapirest.repository.TravelSugestionRepository;
 
 @Service
 public class ReservationService{
