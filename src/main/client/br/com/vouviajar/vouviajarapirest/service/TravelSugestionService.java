@@ -7,7 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.vouviajar.vouviajarapirest.exception.InvalidDataException;
 import br.com.vouviajar.vouviajarapirest.exception.NotFoundException;
+import br.com.vouviajar.vouviajarapirest.model.Travel;
 import br.com.vouviajar.vouviajarapirest.model.TravelSugestion;
 import br.com.vouviajar.vouviajarapirest.repository.TravelSugestionRepository;
 
@@ -21,24 +23,19 @@ public class TravelSugestionService{
         this.travelSugestionRepository = travelSugestionRepository;
     }
 
-    public Optional<TravelSugestion> getById(Long id) {
-    	
+    public Optional<TravelSugestion> getById(Long id) {	
     	return travelSugestionRepository.findById(id);
     }
 
     public List<TravelSugestion> getAll() {
-    	
     	return travelSugestionRepository.findAll();
     }
     
     public TravelSugestion create(TravelSugestion travelSugestion){
-        
-
         return createTravelSugestion(travelSugestion);
     }
 
     private TravelSugestion createTravelSugestion(TravelSugestion travelSugestion) {
-    	
     	travelSugestion.setActive(true);
     	travelSugestion.setCreatedOn(OffsetDateTime.now());
     	travelSugestion.setModifiedOn(OffsetDateTime.now());
@@ -46,37 +43,37 @@ public class TravelSugestionService{
     }
     
     public TravelSugestion update(TravelSugestion travelSugestion, Long id) {
-    	  
-    	Optional<TravelSugestion> travelSugestion_db = travelSugestionRepository.findById(id);;
-    	if( travelSugestion_db == null) {
-    		throw new NotFoundException("TravelSugestion not found"); 
-    	}
-    	
-    	return updateTravelSugestion(travelSugestion, travelSugestion_db.get());
+    	validateData(travelSugestion);
+    	TravelSugestion travelSugestionDB = verifyIfTravelExists(id);
+    	return updateTravelSugestion(travelSugestion, travelSugestionDB);
     }
     
-    private TravelSugestion updateTravelSugestion(TravelSugestion travelSugestion, TravelSugestion travelSugestion_db) {
-				
-    	travelSugestion_db.setTitle(travelSugestion.getTitle());
-    	travelSugestion_db.setDetails(travelSugestion.getDetails());
-    	travelSugestion_db.setOrigin(travelSugestion.getOrigin());
-    	travelSugestion_db.setDestiny(travelSugestion.getDestiny());
-    	travelSugestion_db.setStartTime(travelSugestion.getStartTime());
-    	travelSugestion_db.setEndTime(travelSgestion.getEndTime());
-    	travelSugestion_db.setModifiedOn(OffsetDateTime.now());
-    	
-    	return travelSugestionRepository.save(travelSugestion_db);
+    private TravelSugestion updateTravelSugestion(TravelSugestion travelSugestion, TravelSugestion travelSugestionDB) {
+    	travelSugestionDB.setTitle(travelSugestion.getTitle());
+    	travelSugestionDB.setDetails(travelSugestion.getDetails());
+    	travelSugestionDB.setOrigin(travelSugestion.getOrigin());
+    	travelSugestionDB.setDestiny(travelSugestion.getDestiny());
+    	travelSugestionDB.setStartTime(travelSugestion.getStartTime());
+    	travelSugestionDB.setEndTime(travelSugestion.getEndTime());
+    	travelSugestionDB.setModifiedOn(OffsetDateTime.now());
+    	return travelSugestionRepository.save(travelSugestionDB);
     }
     
     public void delete(Long id) {
-    	
-    	Optional<TravelSugestion> travelSugestion_db = travelSugestionRepository.findById(id);;
-    	if( travelSugestion_db == null) {
-    		throw new NotFoundException("TravelSugestion not found"); 
-    	}
-    	TravelSugestion travelSugestion = travelSugestion_db.get();
+    	TravelSugestion travelSugestion = verifyIfTravelExists(id);
     	travelSugestion.setActive(false);
     	travelSugestionRepository.save(travelSugestion);
-    	
+    }
+    
+    private TravelSugestion verifyIfTravelExists(Long id) {
+    	Optional<TravelSugestion> travelSugestionDB = travelSugestionRepository.findById(id);;
+    	if( travelSugestionDB == null)
+    		throw new NotFoundException("Travel Sugestion not found"); 
+    	return travelSugestionDB.get();
+    }
+    
+    private void validateData(TravelSugestion travelSugestion){
+    	if(travelSugestion.getTitle() == null || travelSugestion.getTitle() == "" )
+    		throw new InvalidDataException();
     }
 }

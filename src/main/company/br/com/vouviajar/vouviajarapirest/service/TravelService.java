@@ -23,24 +23,20 @@ public class TravelService{
     }
 
     public Optional<Travel> getById(Long id) {
-
     	verifyIfTravelExists(id);
     	return travelRepository.findById(id);
     }
 
     public List<Travel> getAll() {
-    	
     	return travelRepository.findAll();
     }
     
     public Travel create(Travel travel){
-        
     	validateData(travel);
         return createTravel(travel);
     }
 
     private Travel createTravel(Travel travel) {
-    
     	//Setar usuário que está realizando o cadastro
     	travel.setIdTravelAgency(travel.getIdTravelAgency());
     	travel.setActive(true);
@@ -50,52 +46,42 @@ public class TravelService{
     }
     
     public Travel update(Travel travel, Long id) {
-    	
-    	verifyIfTravelExists(id);
     	validateData(travel);
-    	Optional<Travel> travel_db = travelRepository.findById(id);
-    	return updateTravel(travel, travel_db.get());
+    	Travel travelDB = verifyIfTravelExists(id);
+    	return updateTravel(travel, travelDB);
     }
     
-    private Travel updateTravel(Travel travel, Travel travel_db) {
-
-    	travel_db.setTitle(travel.getTitle());
-    	travel_db.setDetails(travel.getDetails());
-    	travel_db.setDestiny(travel.getDestiny());
-    	travel_db.setIdTravelStatus(travel.getIdTravelStatus());
-    	travel_db.setOrigin(travel.getOrigin());
-    	travel_db.setStartTime(travel.getStartTime());
-    	travel_db.setEndTime(travel.getEndTime());
-    	travel_db.setIdTravelType(travel.getIdTravelType());
-    	travel_db.setVacancies(travel.getVacancies());
-    	travel_db.setVacanciesAvailable(travel.getVacanciesAvailable());
-    	travel_db.setIdTravelPackage(travel.getIdTravelPackage());
-    	travel_db.setModifiedOn(OffsetDateTime.now());
-    	return travelRepository.save(travel_db);
+    private Travel updateTravel(Travel travel, Travel travelDB) {
+    	travelDB.setTitle(travel.getTitle());
+    	travelDB.setDetails(travel.getDetails());
+    	travelDB.setDestiny(travel.getDestiny());
+    	travelDB.setIdTravelStatus(travel.getIdTravelStatus());
+    	travelDB.setOrigin(travel.getOrigin());
+    	travelDB.setStartTime(travel.getStartTime());
+    	travelDB.setEndTime(travel.getEndTime());
+    	travelDB.setIdTravelType(travel.getIdTravelType());
+    	travelDB.setVacancies(travel.getVacancies());
+    	travelDB.setVacanciesAvailable(travel.getVacanciesAvailable());
+    	travelDB.setIdTravelPackage(travel.getIdTravelPackage());
+    	travelDB.setModifiedOn(OffsetDateTime.now());
+    	return travelRepository.save(travelDB);
     }
     
     public void delete(Long id) {
-    	
-    	verifyIfTravelExists(id);
-    	
-    	Optional<Travel> travel_db = travelRepository.findById(id);
-    	Travel travel = travel_db.get();
+    	Travel travel = verifyIfTravelExists(id);
     	travel.setActive(false);
     	travelRepository.save(travel);
-    
     }
     
-    private void verifyIfTravelExists(Long id) {
-    	Optional<Travel> travel_db = travelRepository.findById(id);;
-    	if( travel_db == null) {
+    private Travel verifyIfTravelExists(Long id) {
+    	Optional<Travel> travelDB = travelRepository.findById(id);;
+    	if( travelDB == null)
     		throw new NotFoundException("Travel not found"); 
-    	}
+    	return travelDB.get();
     }
     
     private void validateData(Travel travel){
-    	if(travel.getTitle() == null || travel.getTitle() == "" ){
+    	if(travel.getTitle() == null || travel.getTitle() == "" )
     		throw new InvalidDataException();
-    	}
     }
-    
 }

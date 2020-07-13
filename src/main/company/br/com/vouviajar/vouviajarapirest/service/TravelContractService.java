@@ -24,31 +24,21 @@ public class TravelContractService{
     }
 
     public Optional<TravelContract> getById(Long id) {
-    	
     	return travelContractRepository.findById(id);
     }
 
     public List<TravelContract> getAll() {
-    	
     	return travelContractRepository.findAll();
     }
     
     public TravelContract create(TravelContract travelContract){
-        
-
-    	if(travelContract.getTerms() == null || travelContract.getTerms() == "" ){ 
-    		throw new InvalidDataException(); 
-    	}
-		  
-    	if(travelContractRepository.findByTerms(travelContract.getTerms()) != null) { 
+    	validateData(travelContract);
+    	if(travelContractRepository.findByTerms(travelContract.getTerms()) != null) 
     		throw new DataAlreadyExistsException("Travel Contract already exists"); 
-    	}
-		        
         return createTravelContract(travelContract);
     }
 
     private TravelContract createTravelContract(TravelContract travelContract) {
-    	
     	travelContract.setActive(true);
     	travelContract.setCreatedOn(OffsetDateTime.now());
     	travelContract.setModifiedOn(OffsetDateTime.now());
@@ -56,40 +46,32 @@ public class TravelContractService{
     }
     
     public TravelContract update(TravelContract travelContract, Long id) {
-    	
-		
-		if(travelContract.getTerms() == null || travelContract.getTerms() == "" ){ 
-			throw new InvalidDataException();
-		}
-		
-    	  
-    	Optional<TravelContract> travelContract_db = travelContractRepository.findById(id);;
-    	if( travelContract_db == null) {
-    		throw new NotFoundException("Travel Contract not found"); 
-    	}
-    	
-    	return updateTravelContract(travelContract, travelContract_db.get());
+    	validateData(travelContract);
+    	TravelContract travelContractDB = verifyIfUserExists(id);
+    	return updateTravelContract(travelContract, travelContractDB);
     }
     
-    private TravelContract updateTravelContract(TravelContract travelContract, TravelContract travelContract_db) {
-    	
-		
-		travelContract_db.setTerms(travelContract.getTerms());
-		 
-    	travelContract_db.setModifiedOn(OffsetDateTime.now());
-    	
-    	return travelContractRepository.save(travelContract_db);
+    private TravelContract updateTravelContract(TravelContract travelContract, TravelContract travelContractDB) {
+    	travelContractDB.setTerms(travelContract.getTerms());
+		travelContractDB.setModifiedOn(OffsetDateTime.now());
+    	return travelContractRepository.save(travelContractDB);
     }
     
     public void delete(Long id) {
-    	
-    	Optional<TravelContract> travelContract_db = travelContractRepository.findById(id);;
-    	if( travelContract_db == null) {
-    		throw new NotFoundException("Travel Contract not found"); 
-    	}
-    	TravelContract travelContract = travelContract_db.get();
+    	TravelContract travelContract = verifyIfUserExists(id);
     	travelContract.setActive(false);
     	travelContractRepository.save(travelContract);
-    	
+    }
+    
+    private TravelContract verifyIfUserExists(Long id) {
+    	Optional<TravelContract> travelContractDB = travelContractRepository.findById(id);;
+    	if( travelContractDB == null)
+    		throw new NotFoundException("Travel Contract not found"); 
+    	return travelContractDB.get();
+    }
+    
+    private void validateData(TravelContract travelContract) {
+ 		if(travelContract.getTerms() == null || travelContract.getTerms() == "" ) 
+			throw new InvalidDataException();
     }
 }

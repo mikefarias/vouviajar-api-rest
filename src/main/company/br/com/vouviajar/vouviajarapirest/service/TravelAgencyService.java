@@ -15,78 +15,64 @@ import br.com.vouviajar.vouviajarapirest.repository.TravelAgencyRepository;
 
 @Service
 public class TravelAgencyService{
-    
-    private TravelAgencyRepository travelAgencyRepository; 
 
-    @Autowired
-    public TravelAgencyService(TravelAgencyRepository travelAgencyRepository){
-        this.travelAgencyRepository = travelAgencyRepository;
-    }
+	private TravelAgencyRepository travelAgencyRepository; 
 
-    public Optional<TravelAgency> getById(Long id) {
-    	
-    	return travelAgencyRepository.findById(id);
-    }
+	@Autowired
+	public TravelAgencyService(TravelAgencyRepository travelAgencyRepository){
+		this.travelAgencyRepository = travelAgencyRepository;
+	}
 
-    public List<TravelAgency> getAll() {
-    	
-    	return travelAgencyRepository.findAll();
-    }
-    
-    public TravelAgency create(TravelAgency travelAgency){
-        
-    	if(travelAgency.getCodeCadastur() == null || travelAgency.getCodeCadastur() == "" ){
-    		throw new InvalidDataException();
-    	}
-    	  
-    	
-        if(travelAgencyRepository.findByCodeCadastur(travelAgency.getCodeCadastur()) != null) {
-        	throw new DataAlreadyExistsException("Travel Agency already exists");
-        }            
-        
-        return createTravelAgency(travelAgency);
-    }
+	public Optional<TravelAgency> getById(Long id) {
+		return travelAgencyRepository.findById(id);
+	}
 
-    private TravelAgency createTravelAgency(TravelAgency travelAgency) {
-    	
-    	travelAgency.setActive(true);
-    	travelAgency.setCreatedOn(OffsetDateTime.now());
-    	travelAgency.setModifiedOn(OffsetDateTime.now());
-    	return travelAgencyRepository.save(travelAgency);
+	public List<TravelAgency> getAll() {
+		return travelAgencyRepository.findAll();
+	}
+
+	public TravelAgency create(TravelAgency travelAgency){
+		validateData(travelAgency);
+		if(travelAgencyRepository.findByCodeCadastur(travelAgency.getCodeCadastur()) != null)
+			throw new DataAlreadyExistsException("Travel Agency already exists");           
+		return createTravelAgency(travelAgency);
+	}
+
+	private TravelAgency createTravelAgency(TravelAgency travelAgency) {
+		travelAgency.setActive(true);
+		travelAgency.setCreatedOn(OffsetDateTime.now());
+		travelAgency.setModifiedOn(OffsetDateTime.now());
+		return travelAgencyRepository.save(travelAgency);
+	}
+
+	public TravelAgency update(TravelAgency travelAgency, Long id) {
+		validateData(travelAgency);
+		TravelAgency travelAgencyDB = verifyIfUserExists(id);
+		return updateTravelAgency(travelAgency, travelAgencyDB);
+	}
+
+	private TravelAgency updateTravelAgency(TravelAgency travelAgency, TravelAgency travelAgencyDB) {
+		travelAgencyDB.setCodeCadastur(travelAgency.getCodeCadastur());
+		travelAgencyDB.setPhysicalAgency(travelAgency.isPhysicalAgency());
+		travelAgencyDB.setModifiedOn(OffsetDateTime.now());
+		return travelAgencyRepository.save(travelAgencyDB);
+	}
+
+	public void delete(Long id) {
+		TravelAgency travelAgency = verifyIfUserExists(id);
+		travelAgency.setActive(false);
+		travelAgencyRepository.save(travelAgency);
+	}
+	
+    private TravelAgency verifyIfUserExists(Long id) {
+		Optional<TravelAgency> travelAgencyDB = travelAgencyRepository.findById(id);;
+		if( travelAgencyDB == null)
+			throw new NotFoundException("Travel Agency not found"); 
+		return travelAgencyDB.get();
     }
     
-    public TravelAgency update(TravelAgency travelAgency, Long id) {
-    	
-    	if(travelAgency.getCodeCadastur() == null || travelAgency.getCodeCadastur() == "" ){
-    		throw new InvalidDataException();
-    	}
-    	  
-    	Optional<TravelAgency> travelAgency_db = travelAgencyRepository.findById(id);;
-    	if( travelAgency_db == null) {
-    		throw new NotFoundException("Travel Agency not found"); 
-    	}
-    	
-    	return updateTravelAgency(travelAgency, travelAgency_db.get());
-    }
-    
-    private TravelAgency updateTravelAgency(TravelAgency travelAgency, TravelAgency travelAgency_db) {
-    	
-    	travelAgency_db.setCodeCadastur(travelAgency.getCodeCadastur());
-    	travelAgency_db.setPhysicalAgency(travelAgency.isPhysicalAgency());
-    	travelAgency_db.setModifiedOn(OffsetDateTime.now());
-    	
-    	return travelAgencyRepository.save(travelAgency_db);
-    }
-    
-    public void delete(Long id) {
-    	
-    	Optional<TravelAgency> travelAgency_db = travelAgencyRepository.findById(id);;
-    	if( travelAgency_db == null) {
-    		throw new NotFoundException("Travel Agency not found"); 
-    	}
-    	TravelAgency travelAgency = travelAgency_db.get();
-    	travelAgency.setActive(false);
-    	travelAgencyRepository.save(travelAgency);
-    	
+    private void validateData(TravelAgency travelAgency) {
+		if(travelAgency.getCodeCadastur() == null || travelAgency.getCodeCadastur() == "" )
+			throw new InvalidDataException();
     }
 }

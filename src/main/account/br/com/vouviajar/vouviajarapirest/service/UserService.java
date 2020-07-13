@@ -33,9 +33,8 @@ public class UserService{
     
     public User register(User user){
     	validateData(user);    	  
-        if(userRepository.findByEmail(user.getEmail()) != null) {
-        	throw new UserAlreadyRegisteredException();
-        }            
+        if(userRepository.findByEmail(user.getEmail()) != null)
+        	throw new UserAlreadyRegisteredException();            
         return registerUser(user);
     }
 
@@ -50,15 +49,15 @@ public class UserService{
     
     public User update(User user, Long id) {    	
     	validateData(user);    	  
-    	User user_db = verifyIfUserExists(id);    	
-    	return updateUser(user, user_db);
+    	User userDB = verifyIfUserExists(id);    	
+    	return updateUser(user, userDB);
     }
     
-    private User updateUser(User user, User user_db) {
-    	user_db.setEmail(user.getEmail());
-    	user_db.setPassword(user.getPassword());
-    	user_db.setModifiedOn(OffsetDateTime.now());
-    	return userRepository.save(user_db);
+    private User updateUser(User user, User userDB) {
+    	userDB.setEmail(user.getEmail());
+    	userDB.setPassword(user.getPassword());
+    	userDB.setModifiedOn(OffsetDateTime.now());
+    	return userRepository.save(userDB);
     }
     
     public void delete(Long id) {    	
@@ -68,17 +67,15 @@ public class UserService{
     }
     
     private User verifyIfUserExists(Long id) {
-    	Optional<User> user_db = userRepository.findById(id);;
-    	if( user_db == null) {
+    	Optional<User> userDB = userRepository.findById(id);;
+    	if( userDB == null)
     		throw new NotFoundException("User not found"); 
-    	}
-    	return user_db.get();
+    	return userDB.get();
     }
     
     private void validateData(User user) {
     	if(user.getEmail() == null || user.getPassword()==null 
-    			|| user.getEmail() == "" || user.getPassword() == ""){
+    			|| user.getEmail() == "" || user.getPassword() == "")
     		throw new UninformedCredentialsException();
-    	}
     }
 }
