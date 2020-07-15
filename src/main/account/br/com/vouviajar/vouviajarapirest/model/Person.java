@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Person implements Serializable {
 	@Column(name="id_person")
 	private Long id;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_user")
 	private User idUser;
 	

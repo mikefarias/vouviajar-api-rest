@@ -19,39 +19,57 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="company", schema="vouviajar")
 public class Company implements Serializable{
+	
+	public Company(){	
+	}
+
+	public Company(String name, String phoneNumber, User user){	
+		this.name = name; 
+		this.phoneNumber = phoneNumber;
+		this.user = user;
+	}
+
+	public Company(User user, String name, String phoneNumber, boolean active, OffsetDateTime createdOn,
+			OffsetDateTime modifiedOn) {
+		this.user = user;
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.active = active;
+		this.createdOn = createdOn;
+		this.modifiedOn = modifiedOn;
+	}
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_company")
+	@Column(name="id_company", nullable = false)
 	private Long id;
 	
 	@OneToOne
-	@JoinColumn(name="id_user")
-	private User idUser;
+	@JoinColumn(name="id_user", nullable = false)
+	private User user;
 	
-	@Column(name="name")
+	@Column(name="name", nullable = false)
 	private String name; 
 	
 	@Column(name="cnpj")
 	private String cnpj;
 	
+	@Column(name="phone_number", nullable = false)
+	private String phoneNumber;
+
 	@OneToOne
 	@JoinColumn(name="id_address")
 	private Address address;
 
-	@OneToOne
-	@JoinColumn(name="id_company_contact")
-	private CompanyContact companyContact;
-	
-	@Column(name="active")
+	@Column(name="active", nullable = false)
 	private boolean active;
 	
-	@Column(name="created_on")
+	@Column(name="created_on", nullable = false)
 	private OffsetDateTime createdOn;
 	
-	@Column(name="modified_on")
+	@Column(name="modified_on", nullable = false)
 	private OffsetDateTime modifiedOn;
 
 	public Long getId() {
@@ -62,12 +80,12 @@ public class Company implements Serializable{
 		this.id = id;
 	}
 	
-	public void setIdUser(User idUser) {
-		this.idUser = idUser;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public User getIdUser() {
-		return idUser;
+	public User getUser() {
+		return user;
 	}
 	
 	public String getName() {
@@ -85,6 +103,14 @@ public class Company implements Serializable{
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
+	
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
 	public Address getAddress() {
 		return address;
@@ -92,15 +118,6 @@ public class Company implements Serializable{
 
 	public void setAddress(Address address) {
 		this.address = address;
-	}
-
-
-	public CompanyContact getCompanyContact() {
-		return companyContact;
-	}
-
-	public void setCompanyContact(CompanyContact companyContact) {
-		this.companyContact = companyContact;
 	}
 
 	public boolean isActive() {
@@ -131,7 +148,7 @@ public class Company implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Objects.hash(address, cnpj, companyContact, createdOn, id, idUser, active,
+		result = prime * result + Objects.hash(address, cnpj, phoneNumber, createdOn, id, user, active,
 				modifiedOn, name);
 		return result;
 	}
@@ -146,10 +163,9 @@ public class Company implements Serializable{
 			return false;
 		Company other = (Company) obj;
 		return Objects.equals(address, other.address) && Objects.equals(cnpj, other.cnpj)
-				&& Objects.equals(companyContact, other.companyContact)
 				&& Objects.equals(createdOn, other.createdOn) && Objects.equals(id, other.id)
-				&& Objects.equals(idUser, other.idUser) && active == other.active
-				&& Objects.equals(modifiedOn, other.modifiedOn) && Objects.equals(name, other.name);
+				&& Objects.equals(user, other.user) && active == other.active
+				&& Objects.equals(modifiedOn, other.modifiedOn) 
+				&& Objects.equals(name, other.name) && Objects.equals(phoneNumber, other.phoneNumber);
 	}
-
 }

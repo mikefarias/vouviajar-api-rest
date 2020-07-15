@@ -11,15 +11,15 @@ import br.com.vouviajar.vouviajarapirest.exception.NotFoundException;
 import br.com.vouviajar.vouviajarapirest.exception.UninformedCredentialsException;
 import br.com.vouviajar.vouviajarapirest.exception.UserAlreadyRegisteredException;
 import br.com.vouviajar.vouviajarapirest.model.User;
-import br.com.vouviajar.vouviajarapirest.repository.UserRepository;
+import br.com.vouviajar.vouviajarapirest.repository.UserPersonRepository;
 
 @Service
-public class UserService{
+public class UserPersonService{
     
-    private UserRepository userRepository; 
+    private UserPersonRepository userRepository; 
 
     @Autowired
-    public UserService(UserRepository userRepository){
+    public UserPersonService(UserPersonRepository userRepository){
         this.userRepository = userRepository;
     }
 

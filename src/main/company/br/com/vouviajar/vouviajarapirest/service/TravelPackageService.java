@@ -7,10 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.vouviajar.vouviajarapirest.exception.DataAlreadyExistsException;
 import br.com.vouviajar.vouviajarapirest.exception.InvalidDataException;
 import br.com.vouviajar.vouviajarapirest.exception.NotFoundException;
-import br.com.vouviajar.vouviajarapirest.exception.DataAlreadyExistsException;
-import br.com.vouviajar.vouviajarapirest.model.TravelContract;
 import br.com.vouviajar.vouviajarapirest.model.TravelPackage;
 import br.com.vouviajar.vouviajarapirest.repository.TravelPackageRepository;
 
@@ -33,7 +32,7 @@ public class TravelPackageService{
     }
     
     public TravelPackage create(TravelPackage travelPackage){
-    	validateData(s);
+    	validateData(travelPackage);
     	if(travelPackageRepository.findByName(travelPackage.getName()) != null)
     		throw new DataAlreadyExistsException("Travel Package already exists"); 		   
         return createTravelPackage(travelPackage);

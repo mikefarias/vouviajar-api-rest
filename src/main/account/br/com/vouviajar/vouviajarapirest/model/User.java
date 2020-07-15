@@ -17,9 +17,8 @@ public class User {
 	public User() {
 	}
 	
-	public User(String email, String password) {
+	public User(String email) {
 		this.email = email;
-		this.password = password;
 	}
 
 	public User(String email, String password, String name, boolean active, boolean enabled, boolean staff,
@@ -37,10 +36,10 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_user")
+	@Column(name="id_user", nullable = false)
 	private Long id;
 	
-	@Column(name="email")
+	@Column(name="email", nullable = false)
 	private String email;
 	
 	@Column(name="password")
@@ -49,22 +48,22 @@ public class User {
 	@Column(name="name")
 	private String name;
 	
-	@Column(name="active")
+	@Column(name="active", nullable = false)
 	private boolean active;
 	
-	@Column(name="enabled")
+	@Column(name="enabled", nullable = false)
 	private boolean enabled;
 	
-	@Column(name="staff")
+	@Column(name="staff", nullable = false)
 	private boolean staff;
 	
 	@Column(name="date_joined")
 	private OffsetDateTime dateJoined;
 	
-	@Column(name="created_on")
+	@Column(name="created_on", nullable = false)
 	private OffsetDateTime createdOn;
 	
-	@Column(name="modified_on")
+	@Column(name="modified_on", nullable = false)
 	private OffsetDateTime modifiedOn;
 
 	public Long getId() {
