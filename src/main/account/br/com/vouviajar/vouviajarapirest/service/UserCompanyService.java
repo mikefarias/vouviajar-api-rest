@@ -74,7 +74,8 @@ public class UserCompanyService{
     	Company company = verifyIfUserExists(id);
     	company.setActive(false);
     	company.setModifiedOn(OffsetDateTime.now());
-    	//TO DO delete user too
+    	company.getUser().setActive(false);
+    	company.getUser().setModifiedOn(OffsetDateTime.now());
     	userCompanyRepository.save(company);    	
     }
 	
