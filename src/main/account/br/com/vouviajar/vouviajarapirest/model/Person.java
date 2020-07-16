@@ -18,6 +18,17 @@ import javax.persistence.Table;
 @Table(name="person", schema="vouviajar")
 public class Person implements Serializable {
 	
+	public Person() {
+		
+	}
+	
+	public Person(String firstName, String lastName, String phoneNumber, User user) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.user = user;
+	}
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -27,16 +38,22 @@ public class Person implements Serializable {
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_user")
-	private User idUser;
+	private User user;
 	
-	@Column(name="name")
-	private String name;
+	@Column(name="first_name")
+	private String firstName;
+
+	@Column(name="last_name")
+	private String lastName;
 	
 	@Column(name="cpf")
 	private String cpf;
 	
 	@Column(name="phone_number")
 	private String phoneNumber;
+	
+	@Column(name="active", nullable = false)
+	private boolean active;
 	
 	@Column(name="created_on")
 	private OffsetDateTime createdOn;
@@ -56,22 +73,30 @@ public class Person implements Serializable {
 		this.id = id;
 	}
 
-	public void setIdUser(User idUser) {
-		this.idUser = idUser;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public User getIdUser() {
-		return idUser;
+	public User getUser() {
+		return user;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
 	public String getCpf() {
 		return cpf;
 	}
@@ -88,6 +113,14 @@ public class Person implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
 	public OffsetDateTime getCreatedOn() {
 		return createdOn;
 	}
@@ -114,7 +147,7 @@ public class Person implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, cpf, createdOn, id, idUser, modifiedOn, name, phoneNumber);
+		return Objects.hash(address, cpf, createdOn, id, user, active, modifiedOn, firstName, lastName, phoneNumber);
 	}
 
 	@Override
@@ -128,8 +161,9 @@ public class Person implements Serializable {
 		Person other = (Person) obj;
 		return Objects.equals(address, other.address) && Objects.equals(cpf, other.cpf)
 				&& Objects.equals(createdOn, other.createdOn) && Objects.equals(id, other.id)
-				&& Objects.equals(idUser, other.idUser) && Objects.equals(modifiedOn, other.modifiedOn)
-				&& Objects.equals(name, other.name) && Objects.equals(phoneNumber, other.phoneNumber);
+				&& Objects.equals(user, other.user) && active == other.active
+				&& Objects.equals(modifiedOn, other.modifiedOn)
+				&& Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName) 
+				&& Objects.equals(phoneNumber, other.phoneNumber);
 	}
-	
 }

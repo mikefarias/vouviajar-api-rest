@@ -8,8 +8,7 @@ import org.springframework.stereotype.Repository;
 import br.com.vouviajar.vouviajarapirest.model.Company;
 
 @Repository
-public interface UserCompanyRepository extends JpaRepository<Company, Long> {
-
+public interface CompanyRepository extends JpaRepository<Company, Long> {
 
     Company findByName(String name);
 

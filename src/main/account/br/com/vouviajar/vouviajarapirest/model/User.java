@@ -21,11 +21,10 @@ public class User {
 		this.email = email;
 	}
 
-	public User(String email, String password, String name, boolean active, boolean enabled, boolean staff,
+	public User(String email, String password, boolean active, boolean enabled, boolean staff,
 			OffsetDateTime dateJoined, OffsetDateTime createdOn, OffsetDateTime modifiedOn) {
 		this.email = email;
 		this.password = password;
-		this.name = name;
 		this.active = active;
 		this.enabled = enabled;
 		this.staff = staff;
@@ -44,9 +43,6 @@ public class User {
 	
 	@Column(name="password")
 	private String password;
-	
-	@Column(name="name")
-	private String name;
 	
 	@Column(name="active", nullable = false)
 	private boolean active;
@@ -88,14 +84,6 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public boolean isActive() {
@@ -153,7 +141,7 @@ public class User {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(createdOn, dateJoined, email, id, active, enabled, staff, modifiedOn, name, password);
+		return Objects.hash(createdOn, dateJoined, email, id, active, enabled, staff, modifiedOn, password);
 	}
 
 	@Override
@@ -168,8 +156,7 @@ public class User {
 		return Objects.equals(createdOn, other.createdOn) && Objects.equals(dateJoined, other.dateJoined)
 				&& Objects.equals(email, other.email) && Objects.equals(id, other.id) && active == other.active
 				&& enabled == other.enabled && staff == other.staff
-				&& Objects.equals(modifiedOn, other.modifiedOn) && Objects.equals(name, other.name)
+				&& Objects.equals(modifiedOn, other.modifiedOn)
 				&& Objects.equals(password, other.password);
 	}
-
 }

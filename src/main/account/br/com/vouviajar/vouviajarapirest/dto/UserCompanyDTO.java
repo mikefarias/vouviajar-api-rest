@@ -4,20 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import br.com.vouviajar.vouviajarapirest.model.Company;
 
 public class UserCompanyDTO{
    
-	public UserCompanyDTO(String name, String phoneNumber, UserDTO userDTO) {
+	public UserCompanyDTO(String name, String phoneNumber, UserDTO user) {
 		this.name = name;
-		this.userDTO = userDTO;
+		this.user = user;
 		this.phoneNumber = phoneNumber;
 	}
 
+	@NotBlank(message="Name cannot be null")
     private String name;
     
-	private UserDTO userDTO;
+	@NotNull
+	private UserDTO user;
   
+	@NotBlank(message="Phone Number cannot be null")
 	private String phoneNumber;
         
 	public String getName(){
@@ -28,12 +34,12 @@ public class UserCompanyDTO{
 		this.name = name;;
 	}
 	
-	public UserDTO getUserDTO() {
-		return userDTO;
+	public UserDTO getUser() {
+		return user;
 	}
 	
-	public void setUser(UserDTO userDTO) {
-		this.userDTO = userDTO;
+	public void setUser(UserDTO user) {
+		this.user = user;
 	}
 
 	public String getPhoneNumber() {
@@ -61,6 +67,6 @@ public class UserCompanyDTO{
 	}
 	
 	public Company toCompany(){
-        return new Company(getName(), getPhoneNumber(), getUserDTO().toUser());
+        return new Company(getName(), getPhoneNumber(), getUser().toUser());
     }	
 }

@@ -12,18 +12,17 @@ import br.com.vouviajar.vouviajarapirest.exception.UninformedCredentialsExceptio
 import br.com.vouviajar.vouviajarapirest.exception.UserAlreadyRegisteredException;
 import br.com.vouviajar.vouviajarapirest.model.Company;
 import br.com.vouviajar.vouviajarapirest.model.User;
-import br.com.vouviajar.vouviajarapirest.repository.UserCompanyRepository;
-import br.com.vouviajar.vouviajarapirest.repository.UserPersonRepository;
+import br.com.vouviajar.vouviajarapirest.repository.CompanyRepository;
 import br.com.vouviajar.vouviajarapirest.repository.UserRepository;
 
 @Service
 public class UserCompanyService{
     
-    private UserCompanyRepository userCompanyRepository; 
+    private CompanyRepository userCompanyRepository; 
     private UserRepository userRepository; 
     
     @Autowired
-    public UserCompanyService(UserCompanyRepository userCompanyRepository, UserRepository userRepository){
+    public UserCompanyService(CompanyRepository userCompanyRepository, UserRepository userRepository){
         this.userCompanyRepository = userCompanyRepository;
         this.userRepository = userRepository;
     }
@@ -36,14 +35,14 @@ public class UserCompanyService{
     	return userCompanyRepository.findAll();
     }
     
-    public Company register(Company company){
+    public Company registerUserCompany(Company company){
     	validateData(company);    	  
         if(userCompanyRepository.findByName(company.getName()) != null)
         	throw new UserAlreadyRegisteredException();            
-        return registerCompany(company);
+        return create(company);
     }
 
-    private Company registerCompany(Company company) {    		
+    private Company create(Company company) {    		
     	company.setActive(true);
     	company.setCreatedOn(OffsetDateTime.now());
     	company.setModifiedOn(OffsetDateTime.now());
@@ -59,7 +58,7 @@ public class UserCompanyService{
     
     public Company update(Company company, Long id) {    	
     	validateData(company);    	  
-    	Company companyDB = verifyIfUserExists(id);    	
+    	Company companyDB = verifyIfUserExists(id);
     	return updateCompany(company, companyDB);
     }
     
@@ -67,6 +66,8 @@ public class UserCompanyService{
     	companyDB.setName(company.getName());
     	companyDB.setPhoneNumber(company.getPhoneNumber());
     	companyDB.setModifiedOn(OffsetDateTime.now());
+    	User user = companyDB.getUser();
+    	user.setModifiedOn(OffsetDateTime.now());
     	return userCompanyRepository.save(companyDB);
     }
     

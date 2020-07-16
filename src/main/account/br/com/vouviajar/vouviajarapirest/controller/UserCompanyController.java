@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.vouviajar.vouviajarapirest.dto.UserCompanyDTO;
 import br.com.vouviajar.vouviajarapirest.model.Company;
-import br.com.vouviajar.vouviajarapirest.model.User;
 import br.com.vouviajar.vouviajarapirest.service.UserCompanyService;
 
 @RestController
@@ -46,7 +45,7 @@ public class UserCompanyController {
 	    
 	@RequestMapping(value = "/user/company", method = RequestMethod.POST)
 	public ResponseEntity<UserCompanyDTO> register(@RequestBody UserCompanyDTO userCompanyDTO) {
-		Company company = userCompanyService.register(userCompanyDTO.toCompany());
+		Company company = userCompanyService.registerUserCompany(userCompanyDTO.toCompany());
 		return new ResponseEntity<UserCompanyDTO>(UserCompanyDTO.toDTO(company), HttpStatus.CREATED);
 	}
 

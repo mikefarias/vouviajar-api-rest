@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 import br.com.vouviajar.vouviajarapirest.model.Company;
 import br.com.vouviajar.vouviajarapirest.model.User;
 
@@ -16,6 +19,8 @@ public class UserDTO{
 		this.email = email;
 	}
     
+	@NotBlank
+	@Email
 	private String email;
         
 	public String getEmail() {

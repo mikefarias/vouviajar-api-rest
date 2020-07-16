@@ -47,16 +47,16 @@ public class Company implements Serializable{
 	private Long id;
 	
 	@OneToOne
-	@JoinColumn(name="id_user", nullable = false)
+	@JoinColumn(name="id_user")
 	private User user;
 	
-	@Column(name="name", nullable = false)
+	@Column(name="name")
 	private String name; 
 	
 	@Column(name="cnpj")
 	private String cnpj;
 	
-	@Column(name="phone_number", nullable = false)
+	@Column(name="phone_number")
 	private String phoneNumber;
 
 	@OneToOne
