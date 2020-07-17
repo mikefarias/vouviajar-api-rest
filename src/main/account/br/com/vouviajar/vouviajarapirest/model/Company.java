@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name="company", schema="vouviajar")
+@Table(name="company", schema="account")
 public class Company implements Serializable{
 	
 	public Company(){	

@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="travel_contract", schema="vouviajar")
+@Table(name="travel_contract", schema="company")
 public class TravelContract implements Serializable{
 
 	public TravelContract(){

@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="person", schema="vouviajar")
+@Table(name="person", schema="account")
 public class Person implements Serializable {
 	
 	public Person() {

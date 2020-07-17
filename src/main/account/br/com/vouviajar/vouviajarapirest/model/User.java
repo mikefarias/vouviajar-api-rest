@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="user", schema="vouviajar")
+@Table(name="user", schema="account")
 public class User {
 	
 	public User() {

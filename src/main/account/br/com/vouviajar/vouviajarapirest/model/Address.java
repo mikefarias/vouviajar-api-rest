@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="address", schema="vouviajar")
+@Table(name="address", schema="account")
 public class Address implements Serializable {
 
 	private static final long serialVersionUID = 1L;

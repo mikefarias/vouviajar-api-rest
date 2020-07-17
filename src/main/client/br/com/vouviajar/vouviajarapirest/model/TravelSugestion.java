@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="travel_sugestion", schema="vouviajar")
+@Table(name="travel_sugestion", schema="client")
 public class TravelSugestion implements Serializable{
 
 	public TravelSugestion() {

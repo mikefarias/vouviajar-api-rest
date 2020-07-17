@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="travel_agency", schema="vouviajar")
+@Table(name="travel_agency", schema="company")
 public class TravelAgency extends Company{
 
 	public TravelAgency(){

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="reservation", schema="vouviajar")
+@Table(name="reservation", schema="company")
 public class Reservation implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

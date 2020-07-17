@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="travel_status", schema="vouviajar")
+@Table(name="travel_status", schema="company")
 public class TravelStatus implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

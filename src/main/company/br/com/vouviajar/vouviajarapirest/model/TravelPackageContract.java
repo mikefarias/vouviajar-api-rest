@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="travel_package_contract", schema="vouviajar")
+@Table(name="travel_package_contract", schema="company")
 public class TravelPackageContract implements Serializable{
 
 	private final static long serialVersionUID = 1L;
