@@ -10,7 +10,7 @@ import br.com.vouviajar.vouviajarapirest.model.Company;
 @Repository
 public interface CompanyRepository extends JpaRepository<Company, Long> {
 
-    Company findByName(String name);
+    Company findByCnpj(String cnpj);
 
     Optional<Company> findById(Long idCompany);
 } 

@@ -14,6 +14,21 @@ import javax.persistence.Table;
 @Table(name="address", schema="account")
 public class Address implements Serializable {
 
+	public Address() {
+		
+	}
+	
+	public Address(String address, String address2, String district, String city, String state, String country,
+			String postalCode) {
+		this.address = address;
+		this.address2 = address2;
+		this.district = district;
+		this.city = city;
+		this.state = state;
+		this.country = country;
+		this.postalCode = postalCode;
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	@Id

@@ -29,11 +29,20 @@ public class Company implements Serializable{
 		this.user = user;
 	}
 
-	public Company(User user, String name, String phoneNumber, boolean active, OffsetDateTime createdOn,
+	public Company(String name, String phoneNumber, String cnpj, Address address){	
+		this.name = name; 
+		this.phoneNumber = phoneNumber;
+		this.cnpj = cnpj;
+		this.address = address;
+	}
+
+	public Company(User user, String name, String phoneNumber, String cnpj, Address address, boolean active, OffsetDateTime createdOn,
 			OffsetDateTime modifiedOn) {
 		this.user = user;
 		this.name = name;
 		this.phoneNumber = phoneNumber;
+		this.cnpj = cnpj;
+		this.address = address;
 		this.active = active;
 		this.createdOn = createdOn;
 		this.modifiedOn = modifiedOn;

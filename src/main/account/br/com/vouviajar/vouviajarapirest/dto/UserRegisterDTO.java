@@ -10,12 +10,12 @@ import javax.validation.constraints.NotBlank;
 import br.com.vouviajar.vouviajarapirest.model.Company;
 import br.com.vouviajar.vouviajarapirest.model.User;
 
-public class UserDTO{
+public class UserRegisterDTO{
 
-	public UserDTO() {
+	public UserRegisterDTO() {
 	}
 	
-	public UserDTO(String email) {
+	public UserRegisterDTO(String email) {
 		this.email = email;
 	}
     
@@ -31,17 +31,17 @@ public class UserDTO{
 		this.email = email;
 	}
 	
-	public static UserDTO toDTO(User user){ 
-		return new UserDTO(user.getEmail()); 
+	public static UserRegisterDTO toDTO(User user){ 
+		return new UserRegisterDTO(user.getEmail()); 
 	}
 	  
-	public static UserDTO toDTO(Optional<User> userOptional){ 
+	public static UserRegisterDTO toDTO(Optional<User> userOptional){ 
 		User user = userOptional.get(); 
-		return new UserDTO(user.getEmail()); 
+		return new UserRegisterDTO(user.getEmail()); 
 	} 
 
-	public static List<UserDTO> toDTO(List<User> users, List<Company> companies){	  
-		List<UserDTO> usersDTO = new ArrayList<UserDTO>(); 
+	public static List<UserRegisterDTO> toDTO(List<User> users, List<Company> companies){	  
+		List<UserRegisterDTO> usersDTO = new ArrayList<UserRegisterDTO>(); 
 		for(User user : users) 
 			usersDTO.add(toDTO(user)); 
 		return usersDTO; 

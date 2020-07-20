@@ -11,7 +11,7 @@ import br.com.vouviajar.vouviajarapirest.model.Company;
 
 public class UserCompanyDTO{
    
-	public UserCompanyDTO(String name, String phoneNumber, UserDTO user) {
+	public UserCompanyDTO(String name, String phoneNumber, UserRegisterDTO user) {
 		this.name = name;
 		this.user = user;
 		this.phoneNumber = phoneNumber;
@@ -21,7 +21,7 @@ public class UserCompanyDTO{
     private String name;
     
 	@NotNull
-	private UserDTO user;
+	private UserRegisterDTO user;
   
 	@NotBlank(message="Phone Number cannot be null")
 	private String phoneNumber;
@@ -34,11 +34,11 @@ public class UserCompanyDTO{
 		this.name = name;;
 	}
 	
-	public UserDTO getUser() {
+	public UserRegisterDTO getUser() {
 		return user;
 	}
 	
-	public void setUser(UserDTO user) {
+	public void setUser(UserRegisterDTO user) {
 		this.user = user;
 	}
 
@@ -51,12 +51,12 @@ public class UserCompanyDTO{
 	}
 	
 	public static UserCompanyDTO toDTO(Company company){ 
-		return new UserCompanyDTO(company.getName(), company.getPhoneNumber(), UserDTO.toDTO(company.getUser())); 
+		return new UserCompanyDTO(company.getName(), company.getPhoneNumber(), UserRegisterDTO.toDTO(company.getUser())); 
 	}
 	  
 	public static UserCompanyDTO toDTO(Optional<Company> companyOptional){ 
 		Company company = companyOptional.get(); 
-		return new UserCompanyDTO(company.getName(), company.getPhoneNumber(), UserDTO.toDTO(company.getUser())); 
+		return new UserCompanyDTO(company.getName(), company.getPhoneNumber(), UserRegisterDTO.toDTO(company.getUser())); 
 	}
 	 
 	public static List<UserCompanyDTO> toDTO(List<Company> companies){
