@@ -1,9 +1,8 @@
 package br.com.vouviajar.vouviajarapirest.dto;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -27,6 +26,7 @@ public class CompanyDTO{
 	@NotBlank(message="CNPJ cannot be null")
 	private String cnpj;
 
+	@Valid
 	@NotNull(message="Address cannot be null")
 	private  AddressDTO address;
 

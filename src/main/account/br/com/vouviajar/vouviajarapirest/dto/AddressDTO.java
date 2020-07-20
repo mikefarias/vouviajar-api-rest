@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.constraints.NotBlank;
+
 import br.com.vouviajar.vouviajarapirest.model.Address;
 
 public class AddressDTO{
@@ -19,18 +21,25 @@ public class AddressDTO{
 		this.postalCode = postalCode;
 	}
 
+	@NotBlank(message="Address cannot be empty")
 	private String address;
 	
+	@NotBlank(message="Address2 cannot be empty")
 	private String address2;
 	
+	@NotBlank(message="District cannot be empty")
 	private String district;
 	
+	@NotBlank(message="City cannot be empty")
 	private String city;
 	
+	@NotBlank(message="State cannot be empty")
 	private String state;
 	
+	@NotBlank(message="Country cannot be empty")
 	private String country;
 	
+	@NotBlank(message="Postal Code cannot be empty")
 	private String postalCode;
 
 	public String getAddress() {

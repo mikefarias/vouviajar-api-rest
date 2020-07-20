@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import br.com.vouviajar.vouviajarapirest.model.Company;
@@ -19,14 +18,14 @@ public class UserCompanyDTO{
 		this.phoneNumber = phoneNumber;
 	}
 
-	@NotBlank(message="Name cannot be null")
+	@NotBlank(message="Name cannot be empty")
     private String name;
     
 	@Valid
-	@NotNull @NotEmpty
+	@NotNull
 	private UserRegisterDTO user;
   
-	@NotBlank(message="Phone Number cannot be null")
+	@NotBlank(message="Phone Number cannot be empty")
 	private String phoneNumber;
         
 	public String getName(){

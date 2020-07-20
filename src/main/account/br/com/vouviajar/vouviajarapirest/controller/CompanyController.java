@@ -2,6 +2,8 @@ package br.com.vouviajar.vouviajarapirest.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +37,7 @@ public class CompanyController {
 	}
 	    
 	@RequestMapping(value = "/company/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<CompanyDTO> update(@RequestBody CompanyDTO companyDTO, @PathVariable Long id ){ 
+	public ResponseEntity<CompanyDTO> update(@RequestBody @Valid CompanyDTO companyDTO, @PathVariable Long id ){ 
 		Company company = companyService.update(companyDTO.toCompany(), id); 
 		return new ResponseEntity<CompanyDTO>(CompanyDTO.toDTO(company), HttpStatus.OK); 
 	}
