@@ -9,7 +9,7 @@ import java.time.OffsetDateTime;
 import java.util.Objects;
 
 @Entity
-@Table(name="travel_sugestion", schema="customer==")
+@Table(name="travel_sugestion", schema="customer")
 public class TravelSugestion implements Serializable{
 
 	public TravelSugestion() {
